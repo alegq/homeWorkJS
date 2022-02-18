@@ -2,42 +2,33 @@
 
 function deepCopy(element) {
 
-    function copyObject(obj) {
-        var clonObj = {} ;
-        for(let i in obj) {
-            if(obj[i] instanceof Array){
-                clonObj[i] = copyArray(obj[i])
-            }else if(obj[i] instanceof Object){
-                clonObj[i] = copyObject(obj[i]);
-            }else {
-                clonObj[i] = obj[i];
-            }
+    function funRec(element) {
+        if (element instanceof Array) {
+            return copyArray(element)
+        } else if (element instanceof Object) {
+            return copyObject(element);
+        } else {
+            return element;
+        }
+    }
 
+    function copyObject(obj) {
+        var clonObj = {};
+        for (let i in obj) {
+            clonObj[i]= funRec(obj[i])
         }
         return clonObj
     }
 
     function copyArray(arr) {
         var clonArr = []
-        for(let i = 0; i < arr.length; i++){
-            if(arr[i] instanceof Array){
-                clonArr[i] = copyArray(arr[i])
-            }else if(arr[i] instanceof Object){
-                clonArr[i] =  copyObject(arr[i])
-            }else{
-                clonArr[i] = arr[i]
-            }
-
+        for (let i = 0; i < arr.length; i++) {
+            clonArr[i] = funRec(arr[i])
         }
         return clonArr
     }
 
-    if  (element instanceof Array) {
-        return copyArray(element)
-    }else if (element instanceof Object){
-        return copyObject(element)
-    }else
-        return element;
+    return funRec(element)
 }
 
 function squareRootsTests() {
