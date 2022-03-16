@@ -110,8 +110,8 @@ function addForm(formDef) {
         return newForm
     }
 }
-//addForm(formDef2)
-
 addForm(formDef1)
+
+addForm(formDef2)
 
 
