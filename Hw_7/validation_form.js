@@ -155,6 +155,7 @@ var inputTagMemo=document.getElementsByName('memo')
 inputTagdev[0].addEventListener('blur', validateInfoForm, false);
 inputTagName[0].addEventListener('blur', validateInfoForm, false);
 inputTagUrl[0].addEventListener('blur', validateInfoForm, false);
+inputTagDate[0].addEventListener('blur', validateInfoForm, false);
 inputTagNum[0].addEventListener('blur', validateInfoForm, false);
 inputTagEmail[0].addEventListener('blur', validateInfoForm, false);
 inputTagMemo[0].addEventListener('blur', validateInfoForm, false);
@@ -176,6 +177,7 @@ inputTagRadio[2].addEventListener('change', validateInfoForm, false);
 inputTagdev[0].addEventListener('focus', clearError, false)
 inputTagName[0].addEventListener('focus', clearError, false)
 inputTagUrl[0].addEventListener('focus', clearError, false)
+inputTagDate[0].addEventListener('focus', clearError, false)
 inputTagNum[0].addEventListener('focus', clearError, false)
 inputTagEmail[0].addEventListener('focus', clearError, false)
 inputTagMemo[0].addEventListener('focus', clearError, false)
@@ -188,6 +190,8 @@ function clearForm() {
 
     clearErrorform(inputTagNum[0])
     clearErrorform(inputTagEmail[0])
+    clearErrorform(inputTagSelect[0])
+    clearErrorform(inputTagRadio[2])
     clearErrorform(inputTagCheckbox[0])
     clearErrorform(inputTagMemo[0])
 
@@ -196,7 +200,7 @@ function clearForm() {
 function clearErrorform(elem){
     var parentElem = elem.parentNode
     var elemSpan = elem.nextSibling
-    if (elemSpan.tagName == 'SPAN' && (elem.value == '' || elem.name == 'votes')){
+    if (elemSpan.tagName == 'SPAN' && (elem.value == '' || elem.name == 'votes'|| elem.name == 'division'|| elem.name == 'payment')){
         parentElem.removeChild(elemSpan)
     }
 }
@@ -257,9 +261,9 @@ function validateInfoForm(EO){
 
 
 
-    if ( develValue.length>10 && this.name=='develname') {
+    if ( (develValue.length>10 || develValue === '') && this.name=='develname') {
         var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Превышена допустимое количество символов!'
+        newSelect.innerHTML = 'Не коректный ввод данных!'
         newSelect.style.color = 'red'
         develField.after(newSelect)
         EO.preventDefault();        // форма не будет отправлена на сервер
@@ -273,9 +277,9 @@ function validateInfoForm(EO){
     }
 
 
-    if ( fioValue.length>10 && this.name=='sitename') {
+    if ( (fioValue.length>10 || fioValue == '') && this.name=='sitename') {
         var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Превышена допустимое количество символов!'
+        newSelect.innerHTML = 'Не коректный ввод данных!'
         newSelect.style.color = 'red'
         fioField.after(newSelect)
         //fioField.focus();           // фокусируем элемент и прокручиваем к нему
@@ -289,7 +293,7 @@ function validateInfoForm(EO){
         EO.preventDefault();
     }
 
-    if ( urlValue.substring(0,7)!=='http://' && urlValue !== '' && this.name=='siteurl') {
+    if ( urlValue.substring(0,7)!=='http://'  && this.name=='siteurl') {
         var newSelect = document.createElement("span")
         newSelect.innerHTML = 'URL введен не верно'
         newSelect.style.color = 'red'
@@ -304,7 +308,7 @@ function validateInfoForm(EO){
         EO.preventDefault();
     }
 
-    if (!dateValue && this.name == 'INFO'){
+    if (!dateValue && (this.name == 'datestart' || this.name == 'INFO')){
         var parent = document.getElementById('n3')
         var br = parent.getElementsByTagName('br')
         var newSelect = document.createElement("span")
@@ -316,7 +320,7 @@ function validateInfoForm(EO){
     }
 
 
-    if ( isNaN(numValue)  && this.name=='visitors') {
+    if ( (isNaN(numValue) || numValue === '' )  && this.name=='visitors') {
         var newSelect = document.createElement("span")
         newSelect.innerHTML = 'Введите пожалуйста в поле корректную цифру!'
         newSelect.style.color = 'red'
@@ -331,7 +335,7 @@ function validateInfoForm(EO){
         EO.preventDefault();
     }
 
-    if ( !emailValue.includes('@') && emailValue !== '' && this.name=='email') {
+    if ( !emailValue.includes('@')  && this.name=='email') {
         var newSelect = document.createElement("span")
         newSelect.innerHTML = 'E-mail введен неправильно!'
         newSelect.style.color = 'red'
@@ -346,17 +350,17 @@ function validateInfoForm(EO){
         EO.preventDefault();
     }
 
-    if (selectValue == 3 && this.name=='division') {
+    if (selectValue == 1 && (this.name=='division' || this.name=='INFO')) {
         var newSelect = document.createElement("span")
-        newSelect.innerHTML = '  Каталог "бытовая техника"  недоступен!'
+        newSelect.innerHTML = '  Каталог "здоровье"  недоступен!'
         newSelect.style.color = 'red'
         selectField.after(newSelect)
         EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
+
     }
 
-    if (langValue == 1 && this.name=='payment') {
-        var parent = this.parentNode
+    if (langValue == 3 && (this.name=='payment' || this.name=='INFO')) {
+        var parent = langField[0].parentNode
         var br = parent.getElementsByTagName('br')
         var newSelect = document.createElement("span")
         newSelect.innerHTML = '   Бесплатной версси сайта на текущий момент не существует!'
@@ -364,7 +368,6 @@ function validateInfoForm(EO){
         // langField[2].after(newSelect)
         parent.insertBefore(newSelect,br[0])
         EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
     }
 
     if (!CheckValue && this.name=='votes') {
