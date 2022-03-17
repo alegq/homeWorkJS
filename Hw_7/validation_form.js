@@ -151,6 +151,14 @@ var inputTagMemo=document.getElementsByName('memo')
 
 
 
+inputTagdev[0].addEventListener('blur', clearError, false)
+inputTagName[0].addEventListener('blur', clearError, false)
+inputTagUrl[0].addEventListener('blur', clearError, false)
+inputTagDate[0].addEventListener('blur', clearError, false)
+inputTagNum[0].addEventListener('blur', clearError, false)
+inputTagEmail[0].addEventListener('blur', clearError, false)
+inputTagMemo[0].addEventListener('blur', clearError, false)
+
 
 inputTagdev[0].addEventListener('blur', validateInfoForm, false);
 inputTagName[0].addEventListener('blur', validateInfoForm, false);
@@ -174,14 +182,6 @@ inputTagRadio[1].addEventListener('change', validateInfoForm, false);
 inputTagRadio[2].addEventListener('change', validateInfoForm, false);
 
 
-inputTagdev[0].addEventListener('focus', clearError, false)
-inputTagName[0].addEventListener('focus', clearError, false)
-inputTagUrl[0].addEventListener('focus', clearError, false)
-inputTagDate[0].addEventListener('focus', clearError, false)
-inputTagNum[0].addEventListener('focus', clearError, false)
-inputTagEmail[0].addEventListener('focus', clearError, false)
-inputTagMemo[0].addEventListener('focus', clearError, false)
-
 function clearForm() {
     clearErrorform(inputTagdev[0])
     clearErrorform(inputTagName[0])
@@ -191,18 +191,21 @@ function clearForm() {
     clearErrorform(inputTagNum[0])
     clearErrorform(inputTagEmail[0])
     clearErrorform(inputTagSelect[0])
-    clearErrorform(inputTagRadio[2])
+
     clearErrorform(inputTagCheckbox[0])
     clearErrorform(inputTagMemo[0])
+
+    clearErrorRadioSub(inputTagRadio[0])
 
 }
 
 function clearErrorform(elem){
     var parentElem = elem.parentNode
     var elemSpan = elem.nextSibling
-    if (elemSpan.tagName == 'SPAN' && (elem.value == '' || elem.name == 'votes'|| elem.name == 'division'|| elem.name == 'payment')){
-        parentElem.removeChild(elemSpan)
-    }
+    //if (elemSpan.tagName == 'SPAN' && (elem.value == '' || elem.name == 'votes'|| elem.name == 'division'|| elem.name == 'payment')){
+    if (elemSpan.tagName == 'SPAN' ){
+            parentElem.removeChild(elemSpan)
+        }
 }
 
 
@@ -225,6 +228,14 @@ function clearErrorRadio(EO){
    }
 }
 
+function clearErrorRadioSub(elem){
+    var parentElem = elem.parentNode
+    var elemSpan = parentElem.getElementsByTagName('span')
+    if (elemSpan[3]){
+        parentElem.removeChild(elemSpan[3])
+    }
+}
+
 function validateInfoForm(EO){
     EO=EO||window.event;
     var formTag=document.forms.INFO;
@@ -238,7 +249,7 @@ function validateInfoForm(EO){
     var urlField=formTag.elements.siteurl;
     var urlValue=urlField.value;
 
-    var dateField=formTag.elements.siteurl;
+    var dateField=formTag.elements.datestart;
     var dateValue=dateField.value;
 
     var numField=formTag.elements.visitors;
@@ -259,22 +270,60 @@ function validateInfoForm(EO){
     var memoField=formTag.elements.memo;
     var memoValue=memoField.value;
 
+    var focusValue = false
+
+    function focusFun (elem, focus) {
+        if(!focus){
+            elem.focus()
+            return 1
+        }else
+            return 0
 
 
-    if ( (develValue.length>10 || develValue === '') && this.name=='develname') {
+    }
+
+    function develFun() {
+        console.log(5)
+        if ( (develValue.length>10 || develValue === '')){
         var newSelect = document.createElement("span")
         newSelect.innerHTML = 'Не коректный ввод данных!'
         newSelect.style.color = 'red'
         develField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-
-    } else if (develValue === ''  && this.name == 'INFO'){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите данные!'
-        newSelect.style.color = 'red'
-        develField.after(newSelect)
         EO.preventDefault();
+        //focusValue = focusFun(develField, focusValue)
+        }
     }
+
+    switch (this.name) {
+        case 'develname': develFun(); break;
+        case 'INFO' : {
+            develFun()
+            break
+        }
+        default:break;
+
+
+    }
+    // if ( this.name=='develname' || this.name == 'INFO') {
+    //     develFun()
+    // }
+
+
+    // if ( (develValue.length>10 || develValue === '') && this.name=='develname') {
+    //     var newSelect = document.createElement("span")
+    //     newSelect.innerHTML = 'Не коректный ввод данных!'
+    //     newSelect.style.color = 'red'
+    //     develField.after(newSelect)
+    //     EO.preventDefault();        // форма не будет отправлена на сервер
+    //
+    // } else if (develValue === ''  && this.name == 'INFO'){
+    //     var newSelect = document.createElement("span")
+    //     newSelect.innerHTML = 'Введите данные!'
+    //     newSelect.style.color = 'red'
+    //     develField.after(newSelect)
+    //     EO.preventDefault();
+    //     focusValue = focusFun(develField, focusValue)
+    // }
 
 
     if ( (fioValue.length>10 || fioValue == '') && this.name=='sitename') {
@@ -291,6 +340,7 @@ function validateInfoForm(EO){
         newSelect.style.color = 'red'
         fioField.after(newSelect)
         EO.preventDefault();
+        //focusValue = focusFun(fioField, focusValue)
     }
 
     if ( urlValue.substring(0,7)!=='http://'  && this.name=='siteurl') {
