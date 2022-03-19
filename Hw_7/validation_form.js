@@ -28,6 +28,7 @@ function addForm(formDef) {
 
     var newForm = document.createElement("form")
     newForm.name = 'INFO'
+    newForm.action = 'https://fe.it-academy.by/TestForm.php'
     newForm.noValidate = 'novalidate'
 
     for (let i = 0; i<formDef.length; i++){
@@ -300,7 +301,7 @@ function validateInfoForm(EO){
         }
         default:break;
     }
-    
+
     function focusFun (elem, focus) {
         if(focus == false){
             elem.focus()
