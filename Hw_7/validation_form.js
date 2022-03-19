@@ -238,6 +238,7 @@ function clearErrorRadioSub(elem){
 
 function validateInfoForm(EO){
     EO=EO||window.event;
+    var self = this
     var formTag=document.forms.INFO;
 
     var develField=formTag.elements.develname; // а можно было найти через getElementById
@@ -272,183 +273,179 @@ function validateInfoForm(EO){
 
     var focusValue = false
 
+    switch (this.name) {
+        case 'develname': develFun();    break;
+        case 'sitename' : fioFun();      break;
+        case 'siteurl'  : urlFun();      break;
+        case 'datestart': dateFun();     break;
+        case 'visitors' : numFun();      break;
+        case 'email'    : emailFun();    break;
+        case 'division' : selectFun();   break;
+        case 'payment'  : radioFun();    break;
+        case 'votes'    : checkFun();    break;
+        case 'memo'     : memoFun();     break;
+
+        case 'INFO' : {
+            develFun();
+            fioFun();
+            urlFun();
+            dateFun();
+            numFun();
+            emailFun();
+            selectFun();
+            radioFun();
+            checkFun();
+            memoFun();
+            break;
+        }
+        default:break;
+    }
+    
     function focusFun (elem, focus) {
-        if(!focus){
+        if(focus == false){
             elem.focus()
-            return 1
-        }else
-            return 0
-
-
+            return true
+        }
     }
 
     function develFun() {
-        console.log(5)
         if ( (develValue.length>10 || develValue === '')){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Не коректный ввод данных!'
-        newSelect.style.color = 'red'
-        develField.after(newSelect)
-        EO.preventDefault();
-        //focusValue = focusFun(develField, focusValue)
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = develValue == '' ? 'Введите данные!': 'Не коректный ввод данных!'
+            newSelect.style.color = 'red'
+            develField.after(newSelect)
+            EO.preventDefault()
+            if (self.name == 'INFO'){
+                focusValue = focusFun(develField, focusValue)
+            }
         }
     }
 
-    switch (this.name) {
-        case 'develname': develFun(); break;
-        case 'INFO' : {
-            develFun()
-            break
+    function fioFun() {
+        if  (fioValue.length>10 || fioValue == '') {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = fioValue == '' ? 'Введите данные!': 'Не коректный ввод данных!'
+            newSelect.style.color = 'red'
+            fioField.after(newSelect)
+            EO.preventDefault();
+
+            if (self.name == 'INFO'){
+                 focusValue = focusFun(fioField, focusValue)
+             }
         }
-        default:break;
-
-
-    }
-    // if ( this.name=='develname' || this.name == 'INFO') {
-    //     develFun()
-    // }
-
-
-    // if ( (develValue.length>10 || develValue === '') && this.name=='develname') {
-    //     var newSelect = document.createElement("span")
-    //     newSelect.innerHTML = 'Не коректный ввод данных!'
-    //     newSelect.style.color = 'red'
-    //     develField.after(newSelect)
-    //     EO.preventDefault();        // форма не будет отправлена на сервер
-    //
-    // } else if (develValue === ''  && this.name == 'INFO'){
-    //     var newSelect = document.createElement("span")
-    //     newSelect.innerHTML = 'Введите данные!'
-    //     newSelect.style.color = 'red'
-    //     develField.after(newSelect)
-    //     EO.preventDefault();
-    //     focusValue = focusFun(develField, focusValue)
-    // }
-
-
-    if ( (fioValue.length>10 || fioValue == '') && this.name=='sitename') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Не коректный ввод данных!'
-        newSelect.style.color = 'red'
-        fioField.after(newSelect)
-        //fioField.focus();           // фокусируем элемент и прокручиваем к нему
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (fioValue === ''  && this.name == 'INFO'){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите данные!'
-        newSelect.style.color = 'red'
-        fioField.after(newSelect)
-        EO.preventDefault();
-        //focusValue = focusFun(fioField, focusValue)
     }
 
-    if ( urlValue.substring(0,7)!=='http://'  && this.name=='siteurl') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'URL введен не верно'
-        newSelect.style.color = 'red'
-        urlField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (urlValue === ''  && this.name == 'INFO'){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите данные!'
-        newSelect.style.color = 'red'
-        urlField.after(newSelect)
-        EO.preventDefault();
+    function urlFun() {
+        if ( urlValue.substring(0,7)!=='http://' ) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = urlValue == '' ? 'Введите данные!': 'URL введен не верно'
+            newSelect.style.color = 'red'
+            urlField.after(newSelect)
+            EO.preventDefault();
+            if (self.name == 'INFO'){
+                 focusValue = focusFun(urlField, focusValue)
+             }
+        }
     }
 
-    if (!dateValue && (this.name == 'datestart' || this.name == 'INFO')){
-        var parent = document.getElementById('n3')
-        var br = parent.getElementsByTagName('br')
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = '   Выберите дату!'
-        newSelect.style.color = 'red'
-        parent.insertBefore(newSelect,br[0])
-        EO.preventDefault();        // форма не будет отправлена на сервер
-
+    function dateFun() {
+        if (!dateValue ){
+            var parent = document.getElementById('n3')
+            var br = parent.getElementsByTagName('br')
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = '   Выберите дату!'
+            newSelect.style.color = 'red'
+            parent.insertBefore(newSelect,br[0])
+            if (self.name == 'INFO'){
+                focusValue = focusFun(dateField, focusValue)
+            }
+            EO.preventDefault();
+        }
     }
 
 
-    if ( (isNaN(numValue) || numValue === '' )  && this.name=='visitors') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите пожалуйста в поле корректную цифру!'
-        newSelect.style.color = 'red'
-        numField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (numValue === ''  && this.name == 'INFO'){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите данные!'
-        newSelect.style.color = 'red'
-        numField.after(newSelect)
-        EO.preventDefault();
+    function numFun() {
+        if ( (isNaN(numValue) || numValue === '' )  ) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = numValue == '' ? 'Введите данные!': 'Введите пожалуйста в поле корректную цифру!'
+            newSelect.style.color = 'red'
+            numField.after(newSelect)
+            EO.preventDefault();        // форма не будет отправлена на сервер
+
+            if (self.name == 'INFO'){
+                focusValue = focusFun(numField, focusValue)
+            }
+        }
     }
 
-    if ( !emailValue.includes('@')  && this.name=='email') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'E-mail введен неправильно!'
-        newSelect.style.color = 'red'
-        emailField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (emailValue === ''  && this.name == 'INFO'){
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Введите данные!'
-        newSelect.style.color = 'red'
-        emailField.after(newSelect)
-        EO.preventDefault();
+    function emailFun() {
+        if (!emailValue.includes('@')) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = emailValue== '' ? 'Введите данные!': 'E-mail введен неправильно!'
+            newSelect.style.color = 'red'
+            emailField.after(newSelect)
+            if (self.name == 'INFO'){
+                focusValue = focusFun(emailField, focusValue)
+            }
+
+            EO.preventDefault();
+        }
     }
 
-    if (selectValue == 1 && (this.name=='division' || this.name=='INFO')) {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = '  Каталог "здоровье"  недоступен!'
-        newSelect.style.color = 'red'
-        selectField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
+    function selectFun() {
+        if (selectValue == 1 ) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = '  Каталог "здоровье"  недоступен!'
+            newSelect.style.color = 'red'
+            selectField.after(newSelect)
+            EO.preventDefault();        // форма не будет отправлена на сервер
+            if (self.name == 'INFO'){
+                focusValue = focusFun(selectField, focusValue)
+            }
+        }
 
     }
 
-    if (langValue == 3 && (this.name=='payment' || this.name=='INFO')) {
-        var parent = langField[0].parentNode
-        var br = parent.getElementsByTagName('br')
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = '   Бесплатной версси сайта на текущий момент не существует!'
-        newSelect.style.color = 'red'
-        // langField[2].after(newSelect)
-        parent.insertBefore(newSelect,br[0])
-        EO.preventDefault();        // форма не будет отправлена на сервер
+
+    function radioFun() {
+        if (langValue == 3 ) {
+            var parent = langField[0].parentNode
+            var br = parent.getElementsByTagName('br')
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = '   Бесплатной версси сайта на текущий момент не существует!'
+            newSelect.style.color = 'red'
+             parent.insertBefore(newSelect,br[0])
+            EO.preventDefault();        // форма не будет отправлена на сервер
+            var radioField = document.getElementById('n7')
+            radioField.scrollIntoView()
+        }
     }
 
-    if (!CheckValue && this.name=='votes') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Вы не разрешили отзывы!'
-        newSelect.style.color = 'red'
-        CheckField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (!CheckValue && this.name=='INFO') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = 'Вы не разрешили отзывы!'
-        newSelect.style.color = 'red'
-        CheckField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
+
+    function checkFun() {
+        if (!CheckValue) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = 'Вы не разрешили отзывы!'
+            newSelect.style.color = 'red'
+            CheckField.after(newSelect)
+            EO.preventDefault();        // форма не будет отправлена на сервер
+            CheckField.scrollIntoView()
+        }
     }
 
-    if (memoValue.length < 5 && memoValue.length !== '' && this.name=='memo') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = '     Слишком короткое описание!'
-        newSelect.style.color = 'red'
-        memoField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
-        return;
-    } else if (memoValue.length == '' && this.name=='INFO') {
-        var newSelect = document.createElement("span")
-        newSelect.innerHTML = '     Введите данные!'
-        newSelect.style.color = 'red'
-        memoField.after(newSelect)
-        EO.preventDefault();        // форма не будет отправлена на сервер
+    function memoFun() {
+        if (memoValue.length < 5 && memoValue.length !== '' ) {
+            var newSelect = document.createElement("span")
+            newSelect.innerHTML = memoValue== '' ? 'Введите данные!': '     Слишком короткое описание!'
+            newSelect.style.color = 'red'
+            memoField.after(newSelect)
+            EO.preventDefault();        // форма не будет отправлена на сервер
+            if (self.name == 'INFO'){
+                focusValue = focusFun(memoField, focusValue)
+            }
+        }
     }
+
 }
 
 
