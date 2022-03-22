@@ -1,10 +1,8 @@
 var ImgEl=document.getElementsByTagName('img')
 
-let img = document.createElement('img');
-img.src = 'http://fe.it-academy.by/Sites/0000007/sax.jpg';
+window.onload = imgPos()
 
-
-imgPos()//изменяем позиционирование всех img
+//imgPos()//изменяем позиционирование всех img
 function imgPos(){
     var imgTop=[]
     var imgLeft=[]
