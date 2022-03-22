@@ -1,8 +1,7 @@
 var ImgEl=document.getElementsByTagName('img')
 
-window.onload = imgPos()
+window.onload = imgPos //изменяем позиционирование всех img
 
-//imgPos()//изменяем позиционирование всех img
 function imgPos(){
     var imgTop=[]
     var imgLeft=[]
