@@ -8,7 +8,6 @@ function imgPos(){
     for (let i = 0; i<ImgEl.length; i++){
         imgTop[i]=ImgEl[i].offsetTop
         imgLeft[i]=ImgEl[i].offsetLeft
-        console.log('X:'+ imgLeft[i] + '   '+'Y: '+ imgTop[i])
     }
     for (let i = 0; i<ImgEl.length; i++){
         ImgEl[i].style.position='absolute';
@@ -75,8 +74,12 @@ function mousedownFun(EO){
     function mouseupFun() {
         //EO.target.removeEventListener("mousemove",mousemoveFun,false)
         document.body.removeEventListener("mousemove",mousemoveFun,false)
+        document.body.removeEventListener("mouseup",mouseupFun,false)
         EO.target.style.cursor = "auto";
     }
+
+
+
 }
 
 
