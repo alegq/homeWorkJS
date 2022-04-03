@@ -23,12 +23,12 @@ field.style.height = Math.round(heightField)+'px'
 var posX = field.offsetLeft
 var posY = field.offsetTop
 
-console.log('X='+ posX+' Y='+posY)
+
 field.style.position = 'absolute'
 field.style.top = heightScore+'px'
 field.style.left = posX+'px'
-posX = Math.round(field.offsetLeft)
-posY = Math.round(field.offsetTop)
+posX = field.offsetLeft
+posY = field.offsetTop
 
 startButt.style.width = widthButton+'px'
 startButt.style.height = heightButton+'px'
@@ -42,7 +42,6 @@ score.style.left = posX + widthField/2 - widthScore/2+'px'
 score.style.lineHeight = heightScore + 'px'
 score.style.fontSize = heightScore/1.2 + 'px'
 
-
 racketLeft.style.position = 'absolute'
 racketLeft.style.width = widhtRacket+'px'
 racketLeft.style.height = heightRacket+'px'
@@ -55,9 +54,6 @@ racketRight.style.height = heightRacket+'px'
 racketRight.style.left = Math.round(posX+widthField-widhtRacket+1)+'px'
 racketRight.style.top = Math.round(posY+heightRacket)+'px'
 
-console.log(posX+' '+widthField+' '+widhtRacket)
-
-
 ball.style.width = radiusBall+'px'
 ball.style.height = radiusBall+'px'
 ball.style.left = posX+widthField/2-radiusBall/2+'px'
@@ -66,15 +62,19 @@ ball.style.top = posY+heightField/2-radiusBall/2+'px'
 var ballH={
     posX : posX+widthField/2-radiusBall/2,
     posY : posY+heightField/2-radiusBall/2,
-    speedX : 4,
+    speedX : 8,
     speedY : 1,
     width : radiusBall,
     height: radiusBall,
 
     update : function() {
-        //var ballElem=document.getElementById('IBall');
         ball.style.left=Math.round(this.posX)+"px";
         ball.style.top=Math.round(this.posY)+"px";
+    },
+    moveStart : function (){
+        ballH.posX = posX+widthField/2-radiusBall/2;
+        ballH.posY = posY+heightField/2-radiusBall/2;
+        this.update()
     }
 }
 
@@ -86,7 +86,6 @@ var racketLeftH={
     height: heightRacket,
 
     update : function() {
-        //var ballElem=document.getElementById('IBall');
         racketLeft.style.left=Math.round(this.posX)+"px";
         racketLeft.style.top=Math.round(this.posY)+"px";
     }
@@ -100,9 +99,6 @@ var racketRightH={
     height: heightRacket,
 
     update : function() {
-        //var ballElem=document.getElementById('IBall');
-        // racketRight.style.left=Math.round(this.posX)+"px";
-        // racketRight.style.top=Math.round(this.posY)+"px";
         racketRight.style.left=this.posX+"px";
         racketRight.style.top=this.posY+"px";
     }
@@ -115,10 +111,10 @@ var areaH={
 
 startButt.addEventListener('click',start, false)
 var tickTime
+
 function start() {
-    ballH.posX = posX+widthField/2-radiusBall/2;
-    ballH.posY = posY+heightField/2-radiusBall/2;
-    ballH.update()
+    ballH.moveStart()
+    //ballH.update()
     tickTime = setInterval(tick,40);
     addEventListener('keydown', moveLeftRacket, false )
     addEventListener('keyup', stopLeftRacket, false )
@@ -129,6 +125,7 @@ var pressCtrl = false
 var pressShift = false
 var pressUp = false
 var pressDown = false
+
 function moveLeftRacket(EO) {
     EO=EO||window.event;
     EO.preventDefault()
@@ -156,27 +153,38 @@ function stopLeftRacket(EO) {
 function tick() {
 
     ballH.posX+=ballH.speedX;
-    console.log(5)
-    //clearInterval(tickTime)
-    if(ballH.posX+ballH.width>areaH.width-widhtRacket  )
+    ballH.posY+=ballH.speedY;
+
+    //отбился ли мяч правой ракеткой
+    if(ballH.posX+ballH.width>areaH.width-widhtRacket
+        && ballH.posY>racketRightH.posY-ballH.width
+        && ballH.posY<racketRightH.posY+heightRacket
+    ){
+        ballH.speedX=-ballH.speedX;
+        ballH.posX= areaH.width-ballH.width-widhtRacket+1;
+    }
+
+    //отбился ли мяч левой ракеткой
+    if(ballH.posX<posX+widhtRacket
+        && ballH.posY>racketLeftH.posY-ballH.width
+        && ballH.posY<racketLeftH.posY+heightRacket
+    ){
+        ballH.speedX=-ballH.speedX;
+        ballH.posX= posX + widhtRacket;
+    }
     // вылетел ли мяч правее стены?
     if ( ballH.posX+ballH.width>areaH.width) {
-       //ballH.speedX=-ballH.speedX;
         ballH.posX= areaH.width-ballH.width+1;
-        scoreRight.innerHTML = scoreRight.innerText*1 + 1
+        scoreLeft.innerHTML = scoreLeft.innerText*1 + 1
         clearInterval(tickTime)
     }
     // вылетел ли мяч левее стены?
     if ( ballH.posX<posX ) {
-        //ballH.speedX=-ballH.speedX;
         ballH.posX=posX;
-        scoreLeft.innerHTML = scoreLeft.innerText*1 + 1
+        scoreRight.innerHTML = scoreRight.innerText*1 + 1
         clearInterval(tickTime)
 
-}
-
-    // ballH.speedY+=ballH.accelY;
-    ballH.posY+=ballH.speedY;
+    }
 
     // вылетел ли мяч ниже пола?
     if ( ballH.posY+ballH.height>areaH.height ) {
@@ -188,32 +196,25 @@ function tick() {
         ballH.speedY=-ballH.speedY;
         ballH.posY=posY;
     }
-    if (pressCtrl){
-        if (racketLeftH.posY<(posY+heightField-heightRacket)){
-            racketLeftH.posY += racketLeftH.speedY;
-        }
 
+    //--------- обратка нажатия клавиш---------//
+    if (pressCtrl && racketLeftH.posY<posY+heightField-heightRacket){
+        racketLeftH.posY += racketLeftH.speedY;
     }
-    if (pressShift){
-        if (racketLeftH.posY>posY+1) {
-            racketLeftH.posY -= racketLeftH.speedY;
-        }
+    if (pressShift && racketLeftH.posY>posY+1){
+        racketLeftH.posY -= racketLeftH.speedY;
     }
-    if (pressUp){
-        if (racketRightH.posY>posY+1){
-            racketRightH.posY -= racketLeftH.speedY;
-        }
+    if (pressUp && racketRightH.posY>posY+1){
+        racketRightH.posY -= racketLeftH.speedY;
+    }
+    if (pressDown && racketRightH.posY<(posY+heightField-heightRacket)){
+        racketRightH.posY += racketLeftH.speedY;
+    }
+    //----------
 
-    }
-    if (pressDown){
-        if(racketRightH.posY<(posY+heightField-heightRacket)){
-            racketRightH.posY += racketLeftH.speedY;
-        }
-
-    }
     racketLeftH.update();
     racketRightH.update();
     ballH.update();
 }
 
-console.log(startButt)
+
