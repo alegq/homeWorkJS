@@ -41,25 +41,51 @@ function buildClock(EO){
     circle.setAttribute("ry",radiusClk);
     circle.setAttribute("cx",radiusClk);
     circle.setAttribute("cy",radiusClk);
+    //circle.setAttribute("y",300);
     SVGElem.appendChild(circle);
 
+    // SVGElem.setAttribute('y', 300);
+    // SVGElem.setAttribute('x', 300);
 
-    var containerSmallCircle= document.createElementNS(w3_org,'g');
-    containerSmallCircle.setAttribute("stroke","sandybrown");
-    containerSmallCircle.setAttribute("width","200");
-    containerSmallCircle.setAttribute("height","200");
-    SVGElem.appendChild(containerSmallCircle);
+    for (let i = 0; i<numCount; i++) {
+        var containerSmallCircle = document.createElementNS(w3_org, 'g');
+        containerSmallCircle.setAttribute("stroke", "sandybrown");
+        containerSmallCircle.setAttribute("width", "200");
+        containerSmallCircle.setAttribute("height", "200");
+        containerSmallCircle.setAttribute("transform", ' rotate(' + (-60 + i*30) + ' 400 400)')
+        //containerSmallCircle.setAttribute("transform", ' rotate('  + ' 400 400)')
+        SVGElem.appendChild(containerSmallCircle);
 
-    var smallCircle=document.createElementNS(w3_org,'ellipse');
-    smallCircle.setAttribute("stroke","mediumseagreen");
-    smallCircle.setAttribute("fill","mediumseagreen");
-    smallCircle.setAttribute("rx",radiusSmallCircle);
-    smallCircle.setAttribute("ry",radiusSmallCircle);
-    smallCircle.setAttribute("cx",radiusSmallCircle);
-    smallCircle.setAttribute("cy",radiusSmallCircle);
-    containerSmallCircle.appendChild(smallCircle);
+        var smallCircle = document.createElementNS(w3_org, 'ellipse');
+        smallCircle.setAttribute("stroke", "mediumseagreen");
+        smallCircle.setAttribute("fill", "mediumseagreen");
+        smallCircle.setAttribute("rx", radiusSmallCircle);
+        smallCircle.setAttribute("ry", radiusSmallCircle);
+        smallCircle.setAttribute("cx", 2*radiusClk - borderClk - radiusSmallCircle);
+        smallCircle.setAttribute("cy", radiusClk );
+        containerSmallCircle.appendChild(smallCircle);
 
+        var numberCircle = document.createElementNS(w3_org, 'text')
+        numberCircle.setAttribute("x", 2*radiusClk - borderClk -  radiusSmallCircle);
+        numberCircle.setAttribute("y", radiusClk + 0.3 *radiusSmallCircle );
+        numberCircle.setAttribute("font-size", radiusSmallCircle);
+        numberCircle.setAttribute("text-anchor", 'middle');
+        numberCircle.innerHTML = i+1
+        var x = 2*radiusClk - borderClk -  radiusSmallCircle
+        var y =radiusClk 
+        numberCircle.setAttribute("transform", ' rotate(' + (360 + 90 - 360/numCount - i*360/numCount) + ' ' + x + ' ' + y +')')
+        //numberCircle.setAttribute("transform", ' rotate(' + 30 + '  250 250)')
+        containerSmallCircle.appendChild(numberCircle)
+//         numberCircle.style.width = diametrSmallCircle + 'px'
+//         numberCircle.style.height = diametrSmallCircle + 'px'
+//         numberCircle.innerHTML = i+1
+//         numberCircle.style.textAlign = 'center'
+//         numberCircle.style.lineHeight = diametrSmallCircle + 'px'
+//         numberCircle.style.fontSize = radiusSmallCircle + 'px'
+//         numberCircle.style.transform = ' rotate(' +  (360 - 360/numCount - i*360/numCount)  + 'deg)'
+//         smallCircle.appendChild(numberCircle)
 
+    }
 
 //     //большой круг циферблата
 //     var bigCircle = document.createElement('div')
