@@ -62,8 +62,8 @@ ball.style.top = posY+heightField/2-radiusBall/2+'px'
 var ballH={
     posX : posX+widthField/2-radiusBall/2,
     posY : posY+heightField/2-radiusBall/2,
-    speedX : 8,
-    speedY : 1,
+    speedX : 0,
+    speedY : 0,
     width : radiusBall,
     height: radiusBall,
 
@@ -109,16 +109,18 @@ var areaH={
     height : posY + heightField
 }
 
+//------------------------------------------
+setInterval(tick,40);
 startButt.addEventListener('click',start, false)
-var tickTime
 
 function start() {
     ballH.moveStart()
-    //ballH.update()
-    tickTime = setInterval(tick,40);
     addEventListener('keydown', moveLeftRacket, false )
     addEventListener('keyup', stopLeftRacket, false )
-    clearInterval(tick)
+    ballH.speedX = ((Math.random() < 0.5) ? -1 : 1)*8;
+    ballH.speedY = ((Math.random() < 0.5) ? -1 : 1)* Math.floor(Math.random() * 3 + 1);
+    racketRightH.speedY=3
+    racketLeftH.speedY=3
 }
 
 var pressCtrl = false
@@ -129,7 +131,6 @@ var pressDown = false
 function moveLeftRacket(EO) {
     EO=EO||window.event;
     EO.preventDefault()
-    console.log(EO.code)
     switch (EO.code) {
         case 'ControlLeft'  : pressCtrl = true; break;
         case 'ShiftLeft'    : pressShift = true; break;
@@ -152,69 +153,76 @@ function stopLeftRacket(EO) {
 
 function tick() {
 
-    ballH.posX+=ballH.speedX;
-    ballH.posY+=ballH.speedY;
+     ballH.posX += ballH.speedX;
+     ballH.posY += ballH.speedY;
 
-    //отбился ли мяч правой ракеткой
-    if(ballH.posX+ballH.width>areaH.width-widhtRacket
-        && ballH.posY>racketRightH.posY-ballH.width
-        && ballH.posY<racketRightH.posY+heightRacket
-    ){
-        ballH.speedX=-ballH.speedX;
-        ballH.posX= areaH.width-ballH.width-widhtRacket+1;
-    }
+     //отбился ли мяч правой ракеткой
+     if (ballH.posX + ballH.width > areaH.width - widhtRacket
+         && ballH.posY > racketRightH.posY - ballH.width
+         && ballH.posY < racketRightH.posY + heightRacket
+     ) {
+         ballH.speedX = -ballH.speedX;
+         ballH.posX = areaH.width - ballH.width - widhtRacket + 1;
+     }
 
-    //отбился ли мяч левой ракеткой
-    if(ballH.posX<posX+widhtRacket
-        && ballH.posY>racketLeftH.posY-ballH.width
-        && ballH.posY<racketLeftH.posY+heightRacket
-    ){
-        ballH.speedX=-ballH.speedX;
-        ballH.posX= posX + widhtRacket;
-    }
-    // вылетел ли мяч правее стены?
-    if ( ballH.posX+ballH.width>areaH.width) {
-        ballH.posX= areaH.width-ballH.width+1;
-        scoreLeft.innerHTML = scoreLeft.innerText*1 + 1
-        clearInterval(tickTime)
-    }
-    // вылетел ли мяч левее стены?
-    if ( ballH.posX<posX ) {
-        ballH.posX=posX;
-        scoreRight.innerHTML = scoreRight.innerText*1 + 1
-        clearInterval(tickTime)
+     //отбился ли мяч левой ракеткой
+     if (ballH.posX < posX + widhtRacket
+         && ballH.posY > racketLeftH.posY - ballH.width
+         && ballH.posY < racketLeftH.posY + heightRacket
+     ) {
+         ballH.speedX = -ballH.speedX;
+         ballH.posX = posX + widhtRacket;
+     }
+     // вылетел ли мяч правее стены?
+     if (ballH.posX + ballH.width > areaH.width+1) {
+         ballH.posX = areaH.width - ballH.width + 1;
+         scoreLeft.innerHTML = scoreLeft.innerText * 1 + 1
+         ballH.speedX = 0;
+         ballH.speedY = 0;
+         racketRightH.speedY=0
+         racketLeftH.speedY=0
+     }
+     // вылетел ли мяч левее стены?
+     if (ballH.posX < posX) {
+         ballH.posX = posX;
+         scoreRight.innerHTML = scoreRight.innerText * 1 + 1
+         ballH.speedX = 0;
+         ballH.speedY = 0;
+         racketRightH.speedY=0
+         racketLeftH.speedY=0
+     }
 
-    }
+     // вылетел ли мяч ниже пола?
+     if (ballH.posY + ballH.height > areaH.height) {
+         ballH.speedY = -ballH.speedY;
+         ballH.posY = areaH.height - ballH.height;
+     }
+     // вылетел ли мяч выше верхней грани?
+     if (ballH.posY < posY) {
+         ballH.speedY = -ballH.speedY;
+         ballH.posY = posY;
+     }
 
-    // вылетел ли мяч ниже пола?
-    if ( ballH.posY+ballH.height>areaH.height ) {
-        ballH.speedY=-ballH.speedY;
-        ballH.posY=areaH.height-ballH.height;
-    }
-    // вылетел ли мяч выше верхней грани?
-    if ( ballH.posY<posY ) {
-        ballH.speedY=-ballH.speedY;
-        ballH.posY=posY;
-    }
+     //--------- обратка нажатия клавиш---------//
+     if (pressCtrl && racketLeftH.posY < posY + heightField - heightRacket) {
+         racketLeftH.posY += racketLeftH.speedY;
+     }
+     if (pressShift && racketLeftH.posY > posY + 1) {
+         racketLeftH.posY -= racketLeftH.speedY;
+     }
+     if (pressUp && racketRightH.posY > posY + 1) {
+         racketRightH.posY -= racketLeftH.speedY;
+     }
+     if (pressDown && racketRightH.posY < (posY + heightField - heightRacket)) {
+         racketRightH.posY += racketLeftH.speedY;
+     }
 
-    //--------- обратка нажатия клавиш---------//
-    if (pressCtrl && racketLeftH.posY<posY+heightField-heightRacket){
-        racketLeftH.posY += racketLeftH.speedY;
-    }
-    if (pressShift && racketLeftH.posY>posY+1){
-        racketLeftH.posY -= racketLeftH.speedY;
-    }
-    if (pressUp && racketRightH.posY>posY+1){
-        racketRightH.posY -= racketLeftH.speedY;
-    }
-    if (pressDown && racketRightH.posY<(posY+heightField-heightRacket)){
-        racketRightH.posY += racketLeftH.speedY;
-    }
-    //----------
+     racketLeftH.update();
+     racketRightH.update();
+     ballH.update();
+     document.body.removeEventListener("keydown",moveLeftRacket,false)
+     document.body.removeEventListener("keyup",stopLeftRacket,false)
 
-    racketLeftH.update();
-    racketRightH.update();
-    ballH.update();
 }
 
 
