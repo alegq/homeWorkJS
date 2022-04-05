@@ -14,6 +14,7 @@ function buildClock(EO){
     var borderClk = radiusClk/25 // расстояние между маленьким кругом и большим
     var numCount = 12 // количество цифр на циферблате
     var angleRot = 360/numCount // угол смещения
+    var transRotOrig = ' ' + radiusClk +' '+ radiusClk+')'
 
     var smallArrowHeight = radiusClk/2 //длинна малой стрелки(часовая)
     var smallArrowWidth = radiusClk/30 //ширина малой стрелки(часовая)
@@ -23,9 +24,6 @@ function buildClock(EO){
 
     var longArrowHeight = radiusClk/1.2 //длинна длинной стрелки(секундная)
     var longArrowWidth = radiusClk/100 //ширина длинной стрелки(секундная)
-
-    var posX = 20 // смещение относительно начала страницы
-    var posY = 20 // смещение относительно начала страницы
 
     document.body.removeChild(document.getElementsByTagName('div')[0])  // удаляем поля ввода вывода
 
@@ -41,19 +39,16 @@ function buildClock(EO){
     circle.setAttribute("ry",radiusClk);
     circle.setAttribute("cx",radiusClk);
     circle.setAttribute("cy",radiusClk);
-    //circle.setAttribute("y",300);
     SVGElem.appendChild(circle);
 
-    // SVGElem.setAttribute('y', 300);
-    // SVGElem.setAttribute('x', 300);
+
 
     for (let i = 0; i<numCount; i++) {
         var containerSmallCircle = document.createElementNS(w3_org, 'g');
         containerSmallCircle.setAttribute("stroke", "sandybrown");
         containerSmallCircle.setAttribute("width", "200");
         containerSmallCircle.setAttribute("height", "200");
-        containerSmallCircle.setAttribute("transform", ' rotate(' + (-60 + i*30) + ' 400 400)')
-        //containerSmallCircle.setAttribute("transform", ' rotate('  + ' 400 400)')
+        containerSmallCircle.setAttribute("transform", ' rotate(' + (-60 + i*30) + transRotOrig)
         SVGElem.appendChild(containerSmallCircle);
 
         var smallCircle = document.createElementNS(w3_org, 'ellipse');
@@ -70,132 +65,74 @@ function buildClock(EO){
         numberCircle.setAttribute("y", radiusClk + 0.3 *radiusSmallCircle );
         numberCircle.setAttribute("font-size", radiusSmallCircle);
         numberCircle.setAttribute("text-anchor", 'middle');
+        numberCircle.setAttribute("fill", 'black');
+        numberCircle.setAttribute("stroke", 'black');
         numberCircle.innerHTML = i+1
         var x = 2*radiusClk - borderClk -  radiusSmallCircle
-        var y =radiusClk 
-        numberCircle.setAttribute("transform", ' rotate(' + (360 + 90 - 360/numCount - i*360/numCount) + ' ' + x + ' ' + y +')')
-        //numberCircle.setAttribute("transform", ' rotate(' + 30 + '  250 250)')
+        var y =radiusClk
+        numberCircle.setAttribute("transform", ' rotate(' + (90 - 360/numCount - i*360/numCount) + ' ' + x + ' ' + y +')')
         containerSmallCircle.appendChild(numberCircle)
-//         numberCircle.style.width = diametrSmallCircle + 'px'
-//         numberCircle.style.height = diametrSmallCircle + 'px'
-//         numberCircle.innerHTML = i+1
-//         numberCircle.style.textAlign = 'center'
-//         numberCircle.style.lineHeight = diametrSmallCircle + 'px'
-//         numberCircle.style.fontSize = radiusSmallCircle + 'px'
-//         numberCircle.style.transform = ' rotate(' +  (360 - 360/numCount - i*360/numCount)  + 'deg)'
-//         smallCircle.appendChild(numberCircle)
-
     }
 
-//     //большой круг циферблата
-//     var bigCircle = document.createElement('div')
-//     bigCircle.style.backgroundColor = 'sandybrown'
-//     bigCircle.style.borderRadius = '50%'
-//     bigCircle.style.width = diameterClk + 'px'
-//     bigCircle.style.height = diameterClk + 'px'
-//
-//     bigCircle.style.position='absolute';
-//     bigCircle.style.left=posX+"px";
-//     bigCircle.style.top =posX + "px";
-//     document.body.appendChild(bigCircle)
-//
-//     for (let i = 0; i<numCount; i++) {
-//         // контейнер малого круга
-//         var containerSmallCircle = document.createElement('div')
-//         containerSmallCircle.className = 'container_Sml_Cir'
-//         containerSmallCircle.style.width = diametrSmallCircle + 'px'
-//         containerSmallCircle.style.height = radiusClk - borderClk + 'px'
-//         containerSmallCircle.style.position = 'absolute';
-//         containerSmallCircle.style.left = posX + radiusClk - radiusSmallCircle + "px";
-//         containerSmallCircle.style.top = posY + borderClk + "px";
-//         containerSmallCircle.style.transformOrigin = '50% 100%'
-//         containerSmallCircle.style.transform = ' rotate(' + (angleRot + i*angleRot)  + 'deg)'
-//         document.body.appendChild(containerSmallCircle)
-//
-//         // малый круг
-//         var smallCircle = document.createElement('div')
-//         smallCircle.style.width = diametrSmallCircle + 'px'
-//         smallCircle.style.height = diametrSmallCircle + 'px'
-//         smallCircle.style.borderRadius = '50%'
-//         smallCircle.style.backgroundColor = 'mediumseagreen'
-//         containerSmallCircle.appendChild(smallCircle)
-//
-//         // цифры в кругах
-//         var numberCircle = document.createElement('div')
-//         numberCircle.style.width = diametrSmallCircle + 'px'
-//         numberCircle.style.height = diametrSmallCircle + 'px'
-//         numberCircle.innerHTML = i+1
-//         numberCircle.style.textAlign = 'center'
-//         numberCircle.style.lineHeight = diametrSmallCircle + 'px'
-//         numberCircle.style.fontSize = radiusSmallCircle + 'px'
-//         numberCircle.style.transform = ' rotate(' +  (360 - 360/numCount - i*360/numCount)  + 'deg)'
-//         smallCircle.appendChild(numberCircle)
-//     }
-// //-------------
-//
-//     //секундная стрелка
-//     var smallArrow = document.createElement('div')
-//     smallArrow.style.background = 'black'
-//     smallArrow.style.height = smallArrowHeight + 'px'
-//     smallArrow.style.width =  smallArrowWidth + 'px'
-//     smallArrow.style.border = '1px solid black'
-//     smallArrow.style.borderRadius = ' 50px 50px 50px 50px'
-//     smallArrow.style.position='absolute';
-//     smallArrow.style.left= posX + radiusClk - smallArrowWidth/2  + "px";
-//     smallArrow.style.top=  posY  + radiusClk - smallArrowHeight + "px";
-//     smallArrow.style.transformOrigin = '50% 100%'
-//
-//     //минутная стрелка
-//     var middleArrow = document.createElement('div')
-//     middleArrow.style.background = 'black'
-//     middleArrow.style.height = middleArrowHeight + 'px'
-//     middleArrow.style.width =  middleArrowWidth + 'px'
-//     middleArrow.style.border = '1px solid black'
-//     middleArrow.style.borderRadius = ' 50px 50px 50px 50px'
-//     middleArrow.style.position='absolute';
-//     middleArrow.style.left= posX + radiusClk - middleArrowWidth/2  + "px";
-//     middleArrow.style.top=  posY  + radiusClk - middleArrowHeight + "px";
-//     middleArrow.style.transformOrigin = '50% 100%'
-//
-//     //часовая стрелка
-//     var longArrow = document.createElement('div')
-//     longArrow.style.background = 'black'
-//     longArrow.style.height = longArrowHeight + 'px'
-//     longArrow.style.width =  longArrowWidth + 'px'
-//     longArrow.style.border = '1px solid black'
-//     longArrow.style.borderRadius = ' 50px 50px 50px 50px'
-//     longArrow.style.position='absolute';
-//     longArrow.style.left= posX + radiusClk - longArrowWidth/2  + "px";
-//     longArrow.style.top=  posY  + radiusClk - longArrowHeight + "px";
-//     longArrow.style.transformOrigin = '50% 100%'
-// //-----------
-//
-//     var currTime
-//     var hours
-//     var minutes
-//     var seconds
-//
-//     updateTime()
-//
-//     document.body.appendChild(smallArrow)
-//     document.body.appendChild(middleArrow)
-//     document.body.appendChild(longArrow)
-//
-//     setInterval(updateTime, 1000)
-//
-//     function formatDateTime() {
-//         currTime=new Date();
-//         hours=currTime.getHours();
-//         minutes=currTime.getMinutes();
-//         seconds=currTime.getSeconds();
-//     }
-//     function updateTime(){
-//         formatDateTime()
-//         longArrow.style.transform = ' rotate(' + seconds*6  + 'deg)'
-//         middleArrow.style.transform = ' rotate(' + minutes*6  + 'deg)'
-//         smallArrow.style.transform = ' rotate(' + (hours * 30 + minutes * 0.5)   + 'deg)'
-//         console.log(hours+':'+minutes+':'+seconds)
-//     }
+    var smallArrow = document.createElementNS(w3_org, 'line');
+    smallArrow.setAttribute('x1', radiusClk )
+    smallArrow.setAttribute('y1', radiusClk )
+    smallArrow.setAttribute('x2', radiusClk )
+    smallArrow.setAttribute('y2', radiusClk-smallArrowHeight )
+    smallArrow.setAttribute('stroke', 'black'  )
+    smallArrow.setAttribute('stroke-width', smallArrowWidth )
+    smallArrow.setAttribute('stroke-linecap', 'round '  )
+
+
+    var middleArrow = document.createElementNS(w3_org, 'line');
+    middleArrow.setAttribute('x1', radiusClk )
+    middleArrow.setAttribute('y1', radiusClk )
+    middleArrow.setAttribute('x2', radiusClk )
+    middleArrow.setAttribute('y2', radiusClk-middleArrowHeight )
+    middleArrow.setAttribute('stroke', 'black'  )
+    middleArrow.setAttribute('stroke-width', middleArrowWidth )
+    middleArrow.setAttribute('stroke-linecap', 'round '  )
+
+
+    var longArrow = document.createElementNS(w3_org, 'line');
+    longArrow.setAttribute('x1', radiusClk )
+    longArrow.setAttribute('y1', radiusClk )
+    longArrow.setAttribute('x2', radiusClk )
+    longArrow.setAttribute('y2', radiusClk-longArrowHeight )
+    longArrow.setAttribute('stroke', 'black'  )
+    longArrow.setAttribute('stroke-width', longArrowWidth )
+    longArrow.setAttribute('stroke-linecap', 'round '  )
+
+
+
+//-----------------------------------
+     var currTime
+     var hours
+     var minutes
+     var seconds
+
+     updateTime()
+
+     SVGElem.appendChild(smallArrow);
+     SVGElem.appendChild(middleArrow);
+     SVGElem.appendChild(longArrow);
+
+     setInterval(updateTime, 1000)
+
+    function formatDateTime() {
+        currTime=new Date();
+        hours=currTime.getHours();
+        minutes=currTime.getMinutes();
+        seconds=currTime.getSeconds();
+    }
+    function updateTime(){
+        formatDateTime()
+        longArrow.setAttribute("transform", ' rotate(' + seconds*6 + transRotOrig)
+        middleArrow.setAttribute("transform", ' rotate(' + minutes*6  + transRotOrig)
+        smallArrow.setAttribute("transform", ' rotate(' + (hours * 30 + minutes * 0.5) + transRotOrig)
+
+        console.log(hours+':'+minutes+':'+seconds)
+    }
 
 }
 
