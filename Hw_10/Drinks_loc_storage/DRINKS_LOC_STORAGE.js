@@ -1,28 +1,26 @@
 "use strict";
-var hash =  new Object();
-
 class LocStorageClass {
 
     constructor(productType){
+        this.productType = productType
 
-         if(JSON.parse(window.localStorage.getItem('LocStorH'))){
-             hash = JSON.parse(window.localStorage.getItem('LocStorH'))
-             this.hashStor = hash[productType]
+        if(JSON.parse(window.localStorage.getItem(productType))){
+            this.hashStor =JSON.parse(window.localStorage.getItem(productType))
           }else {
             this.hashStor = new Object();
          }
     }
-    addValue(productType,key, value){
+    addValue(key, value){
         this.hashStor[key] = value
-        this.updateLocStor(productType)
+        this.updateLocStor()
     }
     getValue(key) {
         return this.hashStor[key]
     }
-    deleteValue(productType,key) {
+    deleteValue(key) {
         if (this.hashStor.hasOwnProperty(key)) {
             delete this.hashStor[key]
-            this.updateLocStor(productType)
+            this.updateLocStor()
             return true
         }else{
             return false
@@ -31,18 +29,17 @@ class LocStorageClass {
     getKeys = function () {
         return Object.keys(this.hashStor)
     }
-    updateLocStor = function (productType) {
-        hash[productType] = this.hashStor;
-        window.localStorage.setItem('LocStorH',JSON.stringify(hash));
+    updateLocStor = function () {
+        window.localStorage.setItem(this.productType,JSON.stringify(this.hashStor));
     }
 }
 var dishStorage = new LocStorageClass('Блюда')
 var drinkStorage = new LocStorageClass('Напитки')
 
-dishStorage.addValue('Блюда','Торт',{ 'рецепт приготовления':'смешать что-то'})
-dishStorage.addValue('Блюда','Салат',{ 'рецепт приготовления':'смешать что-то'})
-drinkStorage.addValue('Напитки','Вино',{'алкогольный':'да', 'рецепт приготовления':'смешать что-то'})
-drinkStorage.addValue('Напитки','Маргарита',{'алкогольный':'да', 'рецепт приготовления':'смешать что-то'})
+dishStorage.addValue('Торт',{ 'рецепт приготовления':'смешать что-то'})
+dishStorage.addValue('Салат',{ 'рецепт приготовления':'смешать что-то'})
+drinkStorage.addValue('Вино',{'алкогольный':'да', 'рецепт приготовления':'смешать что-то'})
+drinkStorage.addValue('Маргарита',{'алкогольный':'да', 'рецепт приготовления':'смешать что-то'})
 
 //---------------   ADD  --------------
 var add = function (EO){
@@ -63,22 +60,28 @@ var add = function (EO){
         const alcoDeg = confirm('Напиток алкогольный?')
         let alcoDegrees = alcoDeg ? 'да' : 'нет'
 
-        drinkStorage.addValue('Напитки',alcoName,{'алкогольный':alcoDegrees, 'рецепт приготовления':alcoRecipe})
+        drinkStorage.addValue(alcoName,{'алкогольный':alcoDegrees, 'рецепт приготовления':alcoRecipe})
         alert('Напиток добавлен')
     }else if(buttonId =='addDish'){
-        drinkStorage.addValue('Блюда',alcoName,{'рецепт приготовления':alcoRecipe})
+        dishStorage.addValue(alcoName,{'рецепт приготовления':alcoRecipe})
         alert('Блюдо добавлено')
     }
 }
 
 //---------------   INFO  --------------
-var info = function () {
+var info = function (EO) {
+    var buttonId = EO.target.id
     do{
-        var alcoInfo = prompt('Введите название напитка, рецепт которого хотите получить ')
+        var alcoInfo = prompt('Введите название продукта, рецепт которого хотите получить ')
     }while (alcoInfo === '' || alcoInfo === ' ' )
-    let info = drinkStorage.getValue(alcoInfo)
+    let info
+    if(buttonId == 'info'){
+        info = drinkStorage.getValue(alcoInfo)
+    }else if (buttonId == 'infoDish'){
+        info = dishStorage.getValue(alcoInfo)
+    }
     if (info){
-        console.log('Напиток:' + alcoInfo  )
+        console.log('Продукт:' + alcoInfo  )
         for (let i in info) {
             console.log(i + ':' + info[i] )
         }
@@ -89,18 +92,17 @@ var info = function () {
 //---------------   DELETE  --------------
 var delet = function (EO) {
     var buttonId = EO.target.id
-    console.log(buttonId)
     do{
         var alcoDelet = prompt('Введите название продукта, рецепт которого хотите удалить ')
     }while (!alcoDelet)
     if (buttonId =='delete'){
-        if (drinkStorage.deleteValue('Напитки',alcoDelet)){
+        if (drinkStorage.deleteValue(alcoDelet)){
             alert('успешно удалено')
         }else{
             alert('Такого напитка нет')
         }
     } else if(buttonId =='deleteDish'){
-        if (dishStorage.deleteValue('Блюда',alcoDelet)){
+        if (dishStorage.deleteValue(alcoDelet)){
             alert('успешно удалено')
         }else{
             alert('Такого напитка нет')
@@ -108,8 +110,15 @@ var delet = function (EO) {
     }
 }
 //---------------   LIST  --------------
-var list = function () {
-    alert(drinkStorage.getKeys())
+var list = function (EO) {
+    var buttonId = EO.target.id
+    if (buttonId =='list'){
+        alert(drinkStorage.getKeys())
+    }else if(buttonId =='listDish'){
+        alert(dishStorage.getKeys())
+    }
+
+
 
 }
 
