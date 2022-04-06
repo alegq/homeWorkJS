@@ -2,8 +2,6 @@ var inputElem = document.getElementsByTagName('input')
 
 inputElem[1].addEventListener('click',buildClock, false) //обработчик событий кнопки
 
-
-
 function buildClock(EO){
     EO=EO||window.event;
 
@@ -104,7 +102,12 @@ function buildClock(EO){
     longArrow.setAttribute('stroke-linecap', 'round '  )
 
 
-
+    var digitalClk = document.createElementNS(w3_org, 'text')
+    digitalClk.setAttribute("x", radiusClk);
+    digitalClk.setAttribute("y", radiusClk/1.5  );
+    digitalClk.setAttribute("font-size", radiusSmallCircle);
+    digitalClk.setAttribute("text-anchor", 'middle');
+    SVGElem.appendChild(digitalClk)
 //-----------------------------------
      var currTime
      var hours
@@ -130,7 +133,7 @@ function buildClock(EO){
         longArrow.setAttribute("transform", ' rotate(' + seconds*6 + transRotOrig)
         middleArrow.setAttribute("transform", ' rotate(' + minutes*6  + transRotOrig)
         smallArrow.setAttribute("transform", ' rotate(' + (hours * 30 + minutes * 0.5) + transRotOrig)
-
+        digitalClk.innerHTML = hours+':'+minutes+':'+seconds
         console.log(hours+':'+minutes+':'+seconds)
     }
 
