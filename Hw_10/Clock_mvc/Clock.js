@@ -1,20 +1,35 @@
 class Clock {
  
     constructor(){
-        this.currTime=new Date();
+        this.currTime=null;
         this.myView = null;
-        this.hours =  currTime.getHours();
-        this.minutes = currTime.getMinutes()
-        this.seconds = currTime.getSeconds()
+        this.hours =  null;
+        this.minutes = null
+        this.seconds = null
     }
     start =  function (view) {
-        setInterval(updateTime, 1000)
         this.myView=view;
+        //this.updateView()
+        //setInterval(this.updateView, 1000)
     }
-    updateView = function (myView) {
-        if ( myView )
-            myView.update();
+    formatDateTime = function() {
+        this.currTime=new Date();
+        this.hours=this.currTime.getHours();
+        this.minutes=this.currTime.getMinutes();
+        this.seconds=this.currTime.getSeconds();
     }
-
-
+    updateView = function () {
+        this.formatDateTime()
+        if (this.myView) {
+            this.myView.updateTime()
+            //console.log(this.currTime)
+        }
+    }
+    stop = function (ind) {
+        console.log(ind)
+    }
 }
+
+
+
+
