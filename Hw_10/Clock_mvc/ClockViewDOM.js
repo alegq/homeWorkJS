@@ -6,13 +6,16 @@ function ClockViewDOM() {
     var longArrow = document.createElement('div')
     var middleArrow = document.createElement('div')
     var smallArrow = document.createElement('div')
+    var timeZone = null
 
     this.start = function (model,field) {
         myModel = model
         myField = field
-        field.style.height = '400px'
-        field.style.width = '400px'
-        var diameterClk = 400 // диаметр часов(большой круг)
+
+        timeZone = field.querySelector('.time_zone');
+        timeZone = parseInt(timeZone.textContent)
+
+        var diameterClk = 300 // диаметр часов(большой круг)
         var radiusClk = diameterClk/2  // радиус часов (большой круг)
         var diametrSmallCircle = diameterClk/8 // диаметра малого круга
         var radiusSmallCircle = diametrSmallCircle/2 //радиус малого круга
@@ -29,20 +32,17 @@ function ClockViewDOM() {
         var longArrowHeight = radiusClk/1.2 //длинна длинной стрелки(секундная)
         var longArrowWidth = radiusClk/100 //ширина длинной стрелки(секундная)
 
-        var posX = 20 // смещение относительно начала страницы
-        var posY = 20 // смещение относительно начала страницы
-
         //большой круг циферблата
         var bigCircle = document.createElement('div')
         bigCircle.style.backgroundColor = 'sandybrown'
         bigCircle.style.borderRadius = '50%'
         bigCircle.style.width = diameterClk + 'px'
         bigCircle.style.height = diameterClk + 'px'
-
-        bigCircle.style.position='absolute';
-        bigCircle.style.left=posX+"px";
-        bigCircle.style.top =posX + "px";
+        bigCircle.style.position='relative';
         myField.appendChild(bigCircle)
+
+        var posX = bigCircle.offsetLeft // смещение относительно начала страницы
+        var posY = bigCircle.offsetTop // смещение относительно начала страницы
 
         for (let i = 0; i<numCount; i++) {
             // контейнер малого круга
@@ -77,8 +77,7 @@ function ClockViewDOM() {
             smallCircle.appendChild(numberCircle)
         }
 
-        //секундная стрелка
-        // var smallArrow = document.createElement('div')
+     //секундная стрелка
         smallArrow.style.background = 'black'
         smallArrow.style.height = smallArrowHeight + 'px'
         smallArrow.style.width =  smallArrowWidth + 'px'
@@ -90,7 +89,6 @@ function ClockViewDOM() {
         smallArrow.style.transformOrigin = '50% 100%'
 
     //минутная стрелка
-        //var middleArrow = document.createElement('div')
         middleArrow.style.background = 'black'
         middleArrow.style.height = middleArrowHeight + 'px'
         middleArrow.style.width =  middleArrowWidth + 'px'
@@ -102,7 +100,6 @@ function ClockViewDOM() {
         middleArrow.style.transformOrigin = '50% 100%'
 
     //часовая стрелка
-        //var longArrow = document.createElement('div')
         longArrow.style.background = 'black'
         longArrow.style.height = longArrowHeight + 'px'
         longArrow.style.width =  longArrowWidth + 'px'
@@ -116,16 +113,14 @@ function ClockViewDOM() {
         myField.appendChild(smallArrow)
         myField.appendChild(middleArrow)
         myField.appendChild(longArrow)
-//-------------
+
         myModel.updateView()
     }
+
     this.updateTime = function (){
-        //formatDateTime()
         longArrow.style.transform = ' rotate(' + myModel.seconds*6  + 'deg)'
         middleArrow.style.transform = ' rotate(' + myModel.minutes*6  + 'deg)'
-        smallArrow.style.transform = ' rotate(' + (myModel.hours * 30 + myModel.minutes * 0.5)   + 'deg)'
-       // console.log(myModel.hours+':'+myModel.minutes+':'+myModel.seconds)
-       // myModel.updateView()
+        smallArrow.style.transform = ' rotate(' + ((myModel.hours+myModel.timeZone+timeZone) * 30 + myModel.minutes * 0.5)  + 'deg)'
     }
 }
 

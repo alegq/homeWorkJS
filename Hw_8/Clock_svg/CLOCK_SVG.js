@@ -26,7 +26,7 @@ function buildClock(EO){
     document.body.removeChild(document.getElementsByTagName('div')[0])  // удаляем поля ввода вывода
 
     var SVGElem=document.getElementById("SSS");
-    var containerSmallCircle=document.getElementById("SS");
+    //var containerSmallCircle=document.getElementById("SS");
     var w3_org = "http://www.w3.org/2000/svg"
 
 
