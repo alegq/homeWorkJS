@@ -52,10 +52,3 @@ view4.start(mod4,containerElem4);
 controller4.config(mod4,containerElem4);
 
 
-var ff = function() {
-     mod1.updateView(mod1, containerElem1);
-     mod2.updateView(mod2, containerElem2);
-     mod3.updateView(mod3, containerElem3);
-     mod4.updateView(mod4, containerElem4);
- }
-setInterval(ff, 1000)

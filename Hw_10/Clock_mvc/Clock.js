@@ -11,6 +11,7 @@ class Clock {
     }
     start =  function (view) {
         this.myView=view;
+        setInterval(()=>this.updateView(), 1000)
     }
     formatDateTime = function() {
         this.currTime=new Date();
