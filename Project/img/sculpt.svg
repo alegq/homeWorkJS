@@ -1,0 +1,104 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg" stroke="null" style="vector-effect: non-scaling-stroke;">
+ <g stroke="null" id="Layer_1">
+  <title stroke="null">Layer 1</title>
+  <path transform="rotate(47.7752 335.647 321.974)" stroke="url(#svg_56)" style="vector-effect: non-scaling-stroke;" fill="url(#svg_55)" opacity="undefined" d="m332.88761,402.08014c-19.33702,0 -30.24206,-36.65869 -30.24206,-78.27008c0,-41.61138 17.52012,-81.94143 36.85713,-81.94143c19.33702,0 29.14573,25.27593 29.14573,66.88732c0,41.61138 -16.42378,93.3242 -35.7608,93.3242l0,-0.00001z" id="svg_51" stroke-opacity="0.14" fill-opacity="0.08" stroke-width="0"/>
+  <ellipse stroke="#000" fill="url(#svg_97)" cx="264.00126" cy="361.03619" id="svg_14" rx="13.43747" ry="26.46715" stroke-width="0" transform="rotate(-11.5106 264.001 361.036)"/>
+  <ellipse stroke="#000" fill="url(#svg_97)" cx="221.40985" cy="363.32618" id="svg_11" rx="12.60172" ry="25.17525" stroke-width="0" transform="rotate(5.07178 221.41 363.326)"/>
+  <path stroke="#000" fill="url(#svg_70)" opacity="undefined" d="m243.06989,361.69483c-35.22091,0 -56.34244,-20.7749 -56.34244,-50.0809c0,-29.306 21.12153,-56.00683 56.34244,-56.00683c35.22091,0 66.41652,23.73786 66.41652,53.04386c0,29.306 -31.19561,53.04386 -66.41652,53.04386z" id="svg_2" stroke-width="0.2"/>
+  <ellipse transform="rotate(1.00506 230.724 162.795)" stroke="#000" fill="#05125b" cx="230.72351" cy="162.79449" id="svg_6" rx="13.81632" ry="14.30976" stroke-width="0"/>
+  <path stroke="#000" style="vector-effect: non-scaling-stroke;" transform="rotate(36.0375 231.897 384.419)" fill="#05125b" stroke-width="0" opacity="undefined" d="m220.05782,396.85006c-12.98642,0 -11.64658,-7.39638 -11.64658,-13.61183c0,-6.21545 10.519,-11.24997 23.50542,-11.24997c12.98642,0 23.50542,5.03452 23.50542,11.24997c0,6.21545 -22.37784,13.61183 -35.36426,13.61183z" id="svg_12"/>
+  <path stroke="#000" style="vector-effect: non-scaling-stroke;" transform="rotate(29.9031 277.271 381.837)" fill="#05125b" stroke-width="0" opacity="undefined" d="m270.31147,393.34335c-12.42617,1.2442 -15.95352,-5.69387 -15.95352,-11.90933c0,-6.21545 10.25392,-11.24997 22.91309,-11.24997c12.65916,0 22.91309,5.03452 22.91309,11.24997c0,6.21545 -17.44648,10.66513 -29.87266,11.90933z" id="svg_15"/>
+  <path transform="rotate(44.626 211.124 343.798)" stroke="#000" fill="url(#svg_70)" opacity="undefined" d="m211.12418,359.98997c-15.86165,0 -28.70959,-7.24602 -28.70959,-16.19173c0,-8.94571 12.84794,-16.19173 28.70959,-16.19173c15.86165,0 28.70959,7.24602 28.70959,16.19173c0,8.94571 -12.84794,16.19173 -28.70959,16.19173z" id="svg_4" stroke-width="0.2"/>
+  <path transform="rotate(9.88532 198.293 295.419)" stroke="#000" style="vector-effect: non-scaling-stroke;" id="svg_25" d="m198.29322,326.51043c-8.03971,0 -14.55187,-13.91363 -14.55187,-31.09094c0,-17.17732 6.51216,-31.09094 14.55187,-31.09094c8.03971,0 14.55187,13.91363 14.55187,31.09094c0,17.17732 -6.51216,31.09094 -14.55187,31.09094z" opacity="undefined" stroke-width="0.2" fill="url(#svg_70)"/>
+  <ellipse transform="rotate(-69.6858 305.634 328.81)" stroke="#000" fill="#0C372C" cx="305.6341" cy="328.80997" id="svg_27" rx="23.03912" ry="11.98899" stroke-width="0.2" opacity="NaN"/>
+  <ellipse transform="rotate(15.6169 197.153 321.84)" stroke="#000" style="vector-effect: non-scaling-stroke;" fill="url(#svg_70)" stroke-width="0" cx="197.15264" cy="321.84049" id="svg_44" rx="13.84615" ry="13.07692" opacity="undefined"/>
+  <path stroke="#000" fill="#0C372C" stroke-width="0" opacity="undefined" d="m311.34066,325.03296c-5.73736,0 -8.9212,-3.04028 -8.9212,-9.20263c0,-6.16235 3.18384,-13.10507 8.9212,-13.10507c5.73736,0 10.38462,4.9915 10.38462,11.15385c0,6.16235 -4.64726,11.15385 -10.38462,11.15385z" id="svg_45"/>
+  <ellipse stroke="url(#svg_56)" fill="url(#svg_55)" stroke-width="0" stroke-opacity="0.14" fill-opacity="0.15" cx="426.53846" cy="336.15385" id="svg_58" rx="0.38462"/>
+  <path transform="rotate(56.3166 403.014 271.071)" stroke="url(#svg_56)" style="vector-effect: non-scaling-stroke;" fill="url(#svg_55)" fill-opacity="0.07" stroke-width="0" stroke-opacity="0.14" opacity="undefined" d="m402.56097,275.29672c-5.73736,0 -12.34587,6.12359 -9.61538,-1.53846c2.73048,-7.66205 3.87803,-9.23077 9.61538,-9.23077c5.73736,0 11.32423,2.08105 11.15385,9.23077c-0.17039,7.14972 -5.41649,1.53846 -11.15385,1.53846z" id="svg_59"/>
+  <ellipse transform="rotate(58.71 302.457 290.471)" stroke="#000" style="vector-effect: non-scaling-stroke;" stroke-width="0.2" fill="#0C372C" cx="302.45665" cy="290.47061" id="svg_3" rx="25.66058" ry="15.81466" opacity="NaN"/>
+  <path stroke="#000" fill="url(#svg_22)" stroke-width="0.2" opacity="undefined" d="m247.45902,299.46231c-31.37661,0 -56.79166,-23.24275 -56.79166,-51.9375c0,-28.69475 25.41505,-51.9375 56.79166,-51.9375c31.37661,0 56.79166,23.24275 56.79166,51.9375c0,28.69475 -25.41505,51.9375 -56.79166,51.9375z" id="svg_1"/>
+  <path transform="rotate(10.7444 249.459 216.965)" stroke="#000" fill="url(#svg_82)" opacity="NaN" d="m192.36369,270.02054l120.44052,-54.5283l-13.89221,-28.91878l-24.04755,-16.47332c0.62405,4.09263 -16.50885,-4.42235 -15.62592,-4.42235c0.88293,0 -24.37494,-0.88426 -24.99899,-1.76748c0.62405,0.88322 -20.6259,10.61009 -21.24995,9.72686c0.62405,0.88322 -11.87592,12.37862 -12.49997,11.49539c0.62405,0.88322 -11.25093,27.41104 -11.87497,26.52782c0.62405,0.88322 -1.87595,23.874 -2.49999,22.99077c0.62405,0.88322 1.24904,22.98974 0.625,22.10651c0.62405,0.88323 5.62403,13.26286 5.62403,13.26286l0,0.00001z" id="svg_5" stroke-width="0"/>
+  <ellipse stroke="#000000" style="vector-effect: non-scaling-stroke;" fill="#231f1f" cx="233.22657" cy="273.52528" id="svg_8" rx="4.74001" ry="4.0429" stroke-width="0"/>
+  <ellipse stroke="#000000" fill="#231f1f" cx="289.08604" cy="266.6116" id="svg_9" rx="3.04503" ry="2.89309" stroke-width="0"/>
+  <line stroke="#444444" id="svg_18" y2="289.28429" x2="263.92992" y1="291.50651" x1="249.85584" fill="none"/>
+  <ellipse ry="15.42857" rx="16.85714" id="svg_19" cy="356.57135" cx="265.42851" stroke-width="0.2" stroke="#000" fill="#e3f4e3"/>
+  <ellipse ry="0.28571" id="svg_21" cy="383.14278" cx="369.71422" stroke-width="0.2" stroke="#000" fill="#e3f4e3"/>
+  <path stroke="#000" fill="url(#svg_10)" stroke-width="0.2" opacity="undefined" d="m290.19513,364.2533c-7.70132,0 -13.93939,-5.83124 -13.93939,-13.0303c0,-7.19906 6.23807,-13.0303 13.93939,-13.0303c7.70132,0 13.93939,5.83124 13.93939,13.0303c0,7.19906 -6.23807,13.0303 -13.93939,13.0303z" id="svg_17"/>
+  <path stroke="#000" fill="url(#svg_7)" opacity="undefined" d="m241.65194,375.08503c-8.371,0 -15.15152,-6.6449 -15.15152,-14.84848c0,-8.20358 6.78051,-14.84848 15.15152,-14.84848c8.371,0 15.15152,6.6449 15.15152,14.84848c0,8.20358 -6.78051,14.84848 -15.15152,14.84848z" id="svg_16" stroke-width="0.2"/>
+ </g>
+ <defs stroke="null" style="vector-effect: non-scaling-stroke;">
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_55" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#686666" offset="0"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#979999" offset="1"/>
+  </linearGradient>
+  <radialGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_56" spreadMethod="pad" r="5.65685" cx="0.5" cy="0.5" gradientTransform="rotate(21.000000000000007,0.5,0.5) translate(0.041666666666666685,0) scale(0.9166666666666666,1)">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#ffffff" offset="0"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#000000" offset="1"/>
+  </radialGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_70" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#094209" stop-opacity="0.99609" offset="0"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#0c372c" stop-opacity="0.99219" offset="0.89063"/>
+  </linearGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_82" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#0e470e" stop-opacity="0.99219" offset="0.125"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#0C372C" offset="1"/>
+  </linearGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_97" x1="0.28125" y1="0.35628" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#05125b" offset="0.01953"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#0b0b3a" stop-opacity="0.99219" offset="0.99609"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#040466" stop-opacity="0.99609" offset="1"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+  </linearGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_7" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#cfca6d" offset="1" stop-opacity="0.99609"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#91910f" offset="1" stop-opacity="0.98438"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="0" stop-opacity="0" offset="NaN"/>
+  </linearGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_10" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#cfca6d" offset="1" stop-opacity="0.99609"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#84840e" offset="1" stop-opacity="0.98828"/>
+  </linearGradient>
+  <linearGradient stroke="null" style="vector-effect: non-scaling-stroke;" id="svg_22" x1="0" y1="0" x2="1" y2="0">
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#CFCA6D" offset="1"/>
+   <stop stroke="null" style="vector-effect: non-scaling-stroke;" stop-color="#636309" offset="1" stop-opacity="0.99609"/>
+  </linearGradient>
+ </defs>
+</svg>
