@@ -46,50 +46,10 @@
    <stop stop-color="#05125b" offset="0.01953"/>
    <stop stop-color="#0b0b3a" stop-opacity="0.99219" offset="0.99609"/>
    <stop stop-color="#040466" stop-opacity="0.99609" offset="1"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
   </linearGradient>
   <linearGradient id="svg_7" x1="0" y1="0" x2="1" y2="0">
    <stop stop-color="#cfca6d" offset="1" stop-opacity="0.99609"/>
    <stop stop-color="#91910f" offset="1" stop-opacity="0.98438"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
-   <stop stop-color="0" stop-opacity="0" offset="NaN"/>
   </linearGradient>
   <linearGradient id="svg_10" x1="0" y1="0" x2="1" y2="0">
    <stop stop-color="#cfca6d" offset="1" stop-opacity="0.99609"/>
