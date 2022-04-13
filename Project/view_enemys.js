@@ -1,36 +1,42 @@
-function Enemys_mod() {
-    var state = 1;
+function Enemys_view(id) {
+    var myModel = null;
+    var myField = null;
+
     var conteinerMan = document.getElementById("1");
+    conteinerMan= conteinerMan.cloneNode(true)
+    document.body.appendChild(conteinerMan)
+    conteinerMan.id = id+1
 
+    var SVGObjectElem=document.getElementById('green_going');
+    console.log(SVGObjectElem)
 
-    var manPosX = -100
-    var manPosY = -100
-    var speedX = 2
-    var speedY = 2
-
-    // var dd = conteinerMan.cloneNode(true)
-    // console.log(dd)
-    // document.body.appendChild(dd)
-    // dd.id='5'
-
-    var SVGObjectElem=document.getElementById("green_going");
     var SVGDocument=SVGObjectElem.contentDocument;
+
+    console.log(SVGDocument)
+
     var kneeLeft=SVGDocument.getElementById("svg_11");
+
     var footLeft=SVGDocument.getElementById("svg_12");
     var footRight=SVGDocument.getElementById("svg_15");
-    var arm = SVGDocument.getElementById("svg_16");   // запястье
+    var arm = SVGDocument.getElementById("svg_16");   // запястье руки
     var wrist= SVGDocument.getElementById("svg_25");  //кисть руки
+    var stateBones = 1
 
-    this.moveMan = function (){
-        manPosX = manPosX+speedX;
-        manPosY = manPosY+speedY;
-        conteinerMan.style.left=Math.round(manPosX)+"px";
-        conteinerMan.style.top=Math.round(manPosY)+"px";
+    this.indentific = function (model, field) {
+        myModel = model
+        myField = field
+
     }
 
-    this.move = function () {
+    this.moveMan = function (){
+        conteinerMan.style.left=myModel.manPosX+"px";
+        conteinerMan.style.top =myModel.manPosY+"px";
+        this.moveBones()
+    }
 
-        if(state) {
+    this.moveBones = function () {
+
+        if(stateBones) {
             kneeLeft.setAttribute("transform", "rotate(25.9557 74.8135 197.383)");
             kneeLeft.setAttribute("cx", "74.81346");
             kneeLeft.setAttribute("cy", "197.38342");
@@ -47,7 +53,7 @@ function Enemys_mod() {
             wrist.setAttribute("cx", "67.16055")
             wrist.setAttribute("cy", "183.1817")
             arm.setAttribute("d", "m76.35716,193.63976c-3.69105,0 -6.6808,-2.96021 -6.6808,-6.6148c0,-3.65458 2.98974,-6.6148 6.6808,-6.6148c3.69105,0 6.6808,2.96021 6.6808,6.6148c0,3.65458 -2.98974,6.6148 -6.6808,6.6148z")
-            state=0
+            stateBones=0
         }else {
             kneeLeft.setAttribute("transform", "rotate(-1.17307 75.6135 197.383)");
             kneeLeft.setAttribute("cx", "75.61346");
@@ -64,27 +70,22 @@ function Enemys_mod() {
             wrist.setAttribute("cx", "64.11707")
             wrist.setAttribute("cy", "183.61648")
             arm.setAttribute("d", "m71.57455,196.68324c-3.69105,0 -6.6808,-2.96021 -6.6808,-6.6148c0,-3.65458 2.98974,-6.6148 6.6808,-6.6148c3.69105,0 6.6808,2.96021 6.6808,6.6148c0,3.65458 -2.98974,6.6148 -6.6808,6.6148z")
-            state=1
+            stateBones=1
         }
 
     }
 }
+//
+window.onload = imgPos
 
-// window.onload = imgPos
-//
-// function imgPos() {
-//     var f = new Enemys_mod()
-//
-//
-//     function went() {
-//         f.move()
-//         f.moveMan()
-//
-//     }
-//     function went1() {
-//         f.moveMan()
-//     }
-//     //setInterval(went,100);
-//
-//
-// }
+function imgPos() {
+    var f = new Enemys_view(1)
+
+    function went() {
+        f.moveBones()
+
+    }
+
+    //setInterval(went,100);
+
+}
