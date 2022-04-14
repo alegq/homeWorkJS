@@ -3,35 +3,63 @@ function Enemys_view(id) {
     var myField = null;
 
     var conteinerMan = document.getElementById("1");
-    conteinerMan= conteinerMan.cloneNode(true)
+    conteinerMan = conteinerMan.cloneNode(true)
     document.body.appendChild(conteinerMan)
     conteinerMan.id = id+1
-
-    var SVGObjectElem=document.getElementById('green_going');
-    console.log(SVGObjectElem)
-
-    var SVGDocument=SVGObjectElem.contentDocument;
-
-    console.log(SVGDocument)
-
-    var kneeLeft=SVGDocument.getElementById("svg_11");
-
-    var footLeft=SVGDocument.getElementById("svg_12");
-    var footRight=SVGDocument.getElementById("svg_15");
-    var arm = SVGDocument.getElementById("svg_16");   // запястье руки
-    var wrist= SVGDocument.getElementById("svg_25");  //кисть руки
+    var SVGObjectElems=conteinerMan.getElementsByClassName('green_going');
+    var SVGObjectElem=conteinerMan.getElementsByClassName('green_going')[0];
+    var kneeLeft= null;
+    var footLeft= null;
+    var footRight= null;
+    var arm= null;
+    var wrist= null;
     var stateBones = 1
 
+    SVGObjectElem.addEventListener('load', function(){
+        var SVGDocument=SVGObjectElem.contentDocument;
+        console.log(SVGDocument)
+        kneeLeft=SVGDocument.getElementById("svg_11");
+        footLeft=SVGDocument.getElementById("svg_12");
+        footRight=SVGDocument.getElementById("svg_15");
+        arm = SVGDocument.getElementById("svg_16");   // запястье руки
+        wrist= SVGDocument.getElementById("svg_25");  //кисть руки
+
+        });
     this.indentific = function (model, field) {
         myModel = model
-        myField = field
-
+        SVGObjectElems[0].style.opacity = 1
     }
 
     this.moveMan = function (){
-        conteinerMan.style.left=myModel.manPosX+"px";
-        conteinerMan.style.top =myModel.manPosY+"px";
-        this.moveBones()
+        conteinerMan.style.left= myModel.manPosX+"px";
+        conteinerMan.style.top = myModel.manPosY+"px";
+
+        //console.log(myModel.manPosX)
+        if(myModel.state == 1){
+            this.moveBones()
+        }
+        if(myModel.state == 2){
+            SVGObjectElems[0].style.opacity = 0
+            SVGObjectElems[1].style.opacity = 1
+            // SVGObjectElem.data = 'img/sculpt.svg'
+            myModel.state = 3
+            setTimeout(this.throwBall, 2000);
+            setTimeout(this.throwBall_2, 3000);
+            setTimeout(this.normal, 4000);
+        }
+
+    }
+    this.throwBall = function () {
+        SVGObjectElems[1].style.opacity = 0
+        SVGObjectElems[2].style.opacity = 1
+    }
+    this.throwBall_2 = function () {
+        SVGObjectElems[2].style.opacity = 0
+        SVGObjectElems[3].style.opacity = 1
+    }
+    this.normal = function () {
+        SVGObjectElems[3].style.opacity = 0
+        SVGObjectElems[0].style.opacity = 1
     }
 
     this.moveBones = function () {
@@ -75,17 +103,50 @@ function Enemys_view(id) {
 
     }
 }
-//
-window.onload = imgPos
+//---------------
 
-function imgPos() {
-    var f = new Enemys_view(1)
+function hero_view(id) {
+    var myModel = null;
+    var myField = null;
 
-    function went() {
-        f.moveBones()
+    var conteinerMan = document.getElementById("red");
+    conteinerMan = conteinerMan.cloneNode(true)
+    document.body.appendChild(conteinerMan)
+    conteinerMan.id = id + 1
+    var SVGObjectElems = conteinerMan.getElementsByClassName('red_man');
+    //var SVGObjectElem = conteinerMan.getElementsByClassName('red_man')[0];
 
+
+    SVGObjectElems[0].addEventListener('load', function () {
+        SVGObjectElems[0].style.opacity = 1
+        //SVGObjectElems[0].addEventListener('click', this.indentific)
+    });
+
+
+    this.indentific = function (model, field) {
+        myModel = model
+        console.log(5)
+        setTimeout(this.blurMan, 2000);
+        setTimeout(this.throwBall, 4000);
+        setTimeout(this.throwBall_2, 6000);
+        setTimeout(this.normal, 8000);
+        // SVGObjectElems[0].style.opacity = 1
+    }
+    this.blurMan = function () {
+        SVGObjectElems[0].style.opacity = 0
+        SVGObjectElems[1].style.opacity = 1
     }
 
-    //setInterval(went,100);
-
+    this.throwBall = function () {
+        SVGObjectElems[1].style.opacity = 0
+        SVGObjectElems[2].style.opacity = 1
+    }
+    this.throwBall_2 = function () {
+        SVGObjectElems[2].style.opacity = 0
+        SVGObjectElems[3].style.opacity = 1
+    }
+    this.normal = function () {
+        SVGObjectElems[3].style.opacity = 0
+        SVGObjectElems[1].style.opacity = 1
+    }
 }
