@@ -17,13 +17,19 @@ window.onload = imgPos
 
 function imgPos() {
     var view1 = new Enemys_view(1)
-    var mod1 = new Enemys_mod
-
-    var viewHero_1 = new hero_view(3)
-    viewHero_1.indentific(mod1)
+    var mod1 = new EnemysMod()
 
     view1.indentific(mod1)
     mod1.start(view1)
+
+//----------------------
+//     var modHero_1 = new HeroMod()
+//     var viewHero_1 = new hero_view(1)
+//     var controllerHero_1 = new ControllerRedMan()
+//
+//     modHero_1.start(viewHero_1)
+//     viewHero_1.indentific(modHero_1)
+//     controllerHero_1.config(modHero_1)
 }
 
 

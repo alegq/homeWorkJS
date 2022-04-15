@@ -122,7 +122,7 @@ var list = function (EO) {
 
 }
 
-document.querySelector("#add").onclick = add
+T
 document.querySelector("#info").onclick = info
 document.querySelector("#delete").onclick = delet
 document.querySelector("#list").onclick = list

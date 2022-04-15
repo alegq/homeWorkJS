@@ -17,7 +17,6 @@ function Enemys_view(id) {
 
     SVGObjectElem.addEventListener('load', function(){
         var SVGDocument=SVGObjectElem.contentDocument;
-        console.log(SVGDocument)
         kneeLeft=SVGDocument.getElementById("svg_11");
         footLeft=SVGDocument.getElementById("svg_12");
         footRight=SVGDocument.getElementById("svg_15");
@@ -110,29 +109,20 @@ function hero_view(id) {
     var myField = null;
 
     var conteinerMan = document.getElementById("red");
-    conteinerMan = conteinerMan.cloneNode(true)
-    document.body.appendChild(conteinerMan)
-    conteinerMan.id = id + 1
+    console.log(conteinerMan)
+    conteinerMan.id += id
     var SVGObjectElems = conteinerMan.getElementsByClassName('red_man');
-    //var SVGObjectElem = conteinerMan.getElementsByClassName('red_man')[0];
-
 
     SVGObjectElems[0].addEventListener('load', function () {
         SVGObjectElems[0].style.opacity = 1
-        //SVGObjectElems[0].addEventListener('click', this.indentific)
     });
 
 
     this.indentific = function (model, field) {
         myModel = model
         console.log(5)
-        setTimeout(this.blurMan, 2000);
-        setTimeout(this.throwBall, 4000);
-        setTimeout(this.throwBall_2, 6000);
-        setTimeout(this.normal, 8000);
-        // SVGObjectElems[0].style.opacity = 1
     }
-    this.blurMan = function () {
+    this.focusMan = function () {
         SVGObjectElems[0].style.opacity = 0
         SVGObjectElems[1].style.opacity = 1
     }
