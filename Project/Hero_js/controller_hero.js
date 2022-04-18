@@ -8,7 +8,7 @@ class ControllerRedMan {
         this.myModel=model;
         this.myField=field;
 
-        var conteinerRedMan = document.getElementById("red");
+        var conteinerRedMan = document.getElementById("red1");
         //var SVGObjectElems=conteinerRedMan.getElementsByClassName('red_man');
         var SVGObjectElem=conteinerRedMan.getElementsByClassName('red_man')[0];
 
@@ -16,7 +16,11 @@ class ControllerRedMan {
         SVGDocument=SVGDocument.getElementById('svg_26')
         console.log(SVGDocument)
 
-        conteinerRedMan.addEventListener("mousedown", fff, false)
+        conteinerRedMan.addEventListener("mouseover", this.myModel.focusRedMan, false)
+        conteinerRedMan.addEventListener("mouseout", this.myModel.blurRedMan, false)
+        conteinerRedMan.addEventListener("mousedown", this.myModel.downRedMan, false)
+        conteinerRedMan.addEventListener("mouseup", this.myModel.upRedMan, false)
+
         //redMan.addEventListener('click', ()=>this.myModel.focusRedMan())
 
         function fff() {

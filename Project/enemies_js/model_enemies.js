@@ -1,10 +1,10 @@
 function EnemysMod() {
     this.state = 1;
     var myView = null;
-    this.manPosX = 300
-    this.manPosY = 300
-    var speedX = 2
-    var speedY = 2
+    this.manPosX = 200
+    this.manPosY = 200
+    var speedX = 0
+    var speedY = 0
 
 
     this.start = function (view) {
@@ -31,21 +31,4 @@ function EnemysMod() {
 }
 
 //--------------------------------------------
-function HeroMod() {
-    this.state = 1;
-    var myView = null;
-    this.manPosX = 500
-    this.manPosY = 500
 
-    this.start = function (view) {
-        myView = view
-       // setInterval(()=>this.positionMan(), 100)
-    }
-
-    this.focusRedMan = function () {
-        console.log('focusRedMan')
-        this.state=2
-        myView.focusMan()
-    }
-
-}
