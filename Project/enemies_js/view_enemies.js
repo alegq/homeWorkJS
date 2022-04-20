@@ -2,10 +2,10 @@ function Enemys_view(id) {
     var myModel = null;
     var myField = null;
 
-    var conteinerMan = document.getElementById("1");
+    var conteinerMan = document.getElementById("-1");
     conteinerMan = conteinerMan.cloneNode(true)
     document.body.appendChild(conteinerMan)
-    conteinerMan.id = id+1
+    conteinerMan.id = id
     var SVGObjectElems=conteinerMan.getElementsByClassName('green_going');
     var SVGObjectElem=conteinerMan.getElementsByClassName('green_going')[0];
     var kneeLeft= null;
@@ -51,15 +51,27 @@ function Enemys_view(id) {
     this.throwBall = function () {
         SVGObjectElems[1].style.opacity = 0
         SVGObjectElems[2].style.opacity = 1
+        myModel.state = 4
     }
     this.throwBall_2 = function () {
         SVGObjectElems[2].style.opacity = 0
         SVGObjectElems[3].style.opacity = 1
+        myModel.state = 6
     }
     this.normal = function () {
         SVGObjectElems[3].style.opacity = 0
         SVGObjectElems[0].style.opacity = 1
     }
+    this.kill = function () {
+        conteinerMan.style.zIndex = 0
+        SVGObjectElems[0].style.opacity = 0
+        SVGObjectElems[1].style.opacity = 0
+        SVGObjectElems[2].style.opacity = 0
+        SVGObjectElems[3].style.opacity = 0
+        SVGObjectElems[4].style.opacity = 1
+        setTimeout(()=>{document.body.removeChild(conteinerMan)}, 3000);
+    }
+
 
     this.moveBones = function () {
 

@@ -4,6 +4,8 @@ function HeroMod() {
     this.manPosX = 500
     this.manPosY = 500
 
+    var ball = null
+
     this.start = function (view) {
         myView = view
         // setInterval(()=>this.positionMan(), 100)
@@ -29,6 +31,10 @@ function HeroMod() {
         var mousedownX=Math.round(EO.pageX-posDivMan.left);
         var mousedownY=Math.round(EO.pageY-posDivMan.top);
 
+
+        ball= new Ball_mod()       // создаем новый снежок в руке
+        ball.update(posDivMan.left+70,posDivMan.top) //задаем координты для нового снежка
+
         document.body.addEventListener("mousemove",mousemoveFun,false)
 
         function mousemoveFun(EO){
@@ -39,12 +45,14 @@ function HeroMod() {
             var clickY=Math.round(EO.pageY);
 
             // установим новыен координаты для картинки
-            self.style.left=clickX -mousedownX +"px"
-            self.style.top=clickY -mousedownY+"px";
+            self.style.left=clickX-mousedownX +"px"
+            self.style.top=clickY-mousedownY+"px";
+            ball.update(clickX-mousedownX+70,clickY-mousedownY) // обновляем координаты для снежка в руке
         }
 
         document.body.addEventListener("mouseup",mouseupFun,false)
         function mouseupFun() {
+            ball.startMoveBall() //запускаем снежок
             //EO.target.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mouseup",mouseupFun,false)
