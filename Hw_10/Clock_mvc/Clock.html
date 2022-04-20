@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div id="ClockContainer1" >
+    <input class="start" type="button" value="Старт">
+    <input class="stop"  type="button" value="Стоп">
+    Нью-Йорк (GMT<span class="time_zone">-4</span>)
+</div>
+
+<div id="ClockContainer2" >
+    <input class="start" type="button" value="Старт">
+    <input class="stop"  type="button" value="Стоп">
+    Минск (GMT<span class="time_zone">+3</span>)
+</div>
+
+<div id="ClockContainer3" style='position: absolute; left: 340px; top: 7px' >
+    <input class="start" type="button" value="Старт">
+    <input class="stop"  type="button" value="Стоп">
+    Берлин (GMT<span class="time_zone">+2</span>)
+    <div>
+        <svg class="svg"  width="320" height="320" ></svg>
+    </div>
+</div>
+
+<div id="ClockContainer4" style='position: absolute; left: 340px; top: 330px' >
+    <input class="start" type="button" value="Старт">
+    <input class="stop"  type="button" value="Стоп">
+    Токио (GMT<span class="time_zone">+9</span>)
+    <div>
+        <svg class="svg"  width="320" height="320" ></svg>
+    </div>
+</div>
+
+</body>
+
+<script src="Clock.js"></script>
+<script src="ClockViewDOM.js"></script>
+<script src="ClockViewSVG.js"></script>
+<script src="ClockControllerButtons.js"></script>
+</html>
+
+
+
