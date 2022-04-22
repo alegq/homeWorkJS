@@ -1,7 +1,9 @@
 #field{
-    background-color: khaki;
+    /*background-color: darkgray;*/
+    background: linear-gradient(45deg, #f5f2f2, #ebdddd);
     margin-left: auto;
     margin-right: auto;
+    border: thick double #32a1ce;
 
 }
 .green_going{
@@ -24,5 +26,99 @@
     left: 200px;
     border-radius: 50% ;
     background-color: aliceblue;
+    border: 1px solid #848894;
 
 }
+
+
+#menu{
+    position: absolute;
+    top: -50%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #1a2edb;
+    border-radius: 5%;
+    /*opacity: 80%;*/
+    transition-duration: 0.5s;
+    /*z-index: 5;*/
+    -webkit-transition-timing-function: linear; /* для Android */
+    transition-timing-function: linear;
+}
+#menu:hover
+{
+    /*opacity: 100%;*/
+    background-color: #0a1cc4;
+
+}
+html {
+    background-image: url(img/start_view/photo-bg.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.menu_div{
+   height: 50px;
+   margin: 20px;
+   border: thick double #32a1ce;
+    border-radius: 40%;
+    text-align: center;
+    background-color: aquamarine;
+}
+.menu_div:hover
+{
+    border: thick double #f5a142;
+}
+
+
+button{
+    width: 100%;
+    height: 100%;
+    min-width: 150px;
+    min-height: 40px;
+    font: inherit;
+    font-size: calc(2em);
+    cursor: pointer;
+    background-color: aquamarine;
+    border: none;
+    color: black;
+    transition-duration: 1s;
+    border-radius: 40%;
+}
+button:hover
+{
+    background-color: #a6db14;
+    /*color: blue;*/
+}
+span{
+    font-size: calc(2em);
+}
+input{
+    height: 25px;
+    text-align: center;
+    font-size: calc(1em);
+
+}
+h1{
+    text-align: center;
+    text-shadow: 1px 1px 2px white, 0 0 1em red;
+}
+
+.png{
+     position: absolute;
+     /*z-index: 100;*/
+     width: 45%;
+ }
+.hand_png{
+    position: absolute;
+    width: 30%;
+    left: 60%;
+    top: 70%;
+}
+

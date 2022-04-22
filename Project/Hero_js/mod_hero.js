@@ -1,25 +1,22 @@
-function HeroMod() {
-    this.state = 1;
+function HeroMod(id) {
     var myView = null;
-    this.manPosX = 500
-    this.manPosY = 500
-
+    var manPosX = 500
+    var manPosY = 500
+    var id = id
     var ball = null
 
     this.start = function (view) {
         myView = view
-        // setInterval(()=>this.positionMan(), 100)
     }
 
     this.focusRedMan = function () {
-        //console.log('focusRedMan')
-        this.state=2
-        myView.focusMan()
+        myView.state=1
+        myView.updateViewRed()
     }
     this.blurRedMan = function () {
         //console.log('blurRedMan')
-        this.state=3
-        myView.blurMan()
+        myView.state=2
+        myView.updateViewRed()
     }
     this.downRedMan = function (EO){
         EO=EO||window.event;
@@ -44,29 +41,36 @@ function HeroMod() {
             var clickX=Math.round(EO.pageX);
             var clickY=Math.round(EO.pageY);
 
-            // установим новыен координаты для картинки
-            self.style.left=clickX-mousedownX +"px"
-            self.style.top=clickY-mousedownY+"px";
+            manPosX = clickX-mousedownX
+            manPosY = clickY-mousedownY
+
+            // установим новыен координаты для героя
+            self.style.left=manPosX +"px"
+            self.style.top=manPosY+"px";
+            hashEnemiesPoss[id] = [manPosX,manPosY]// заносим координаты в общий хэш координатов всех персонажей
             ball.update(clickX-mousedownX+70,clickY-mousedownY) // обновляем координаты для снежка в руке
         }
 
         document.body.addEventListener("mouseup",mouseupFun,false)
         function mouseupFun() {
             ball.startMoveBall() //запускаем снежок
-            //EO.target.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mouseup",mouseupFun,false)
-            EO.target.style.cursor = "auto";
         }
 
-        this.state=4
-
-        myView.downMan()
+        myView.state=3
+        myView.updateViewRed()
     }
     this.upRedMan = function (){
-        //console.log('upRedMan')
-        this.state=5
-        myView.upMan()
+        myView.state=4
+        myView.updateViewRed()
+    }
+
+    this.killedMan = function (){
+        myView.state=5
+        myView.updateViewRed()
+        endGame()
+
     }
 
     //------------------

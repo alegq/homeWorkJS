@@ -33,34 +33,38 @@ function Enemys_view(id) {
         conteinerMan.style.left= myModel.manPosX+"px";
         conteinerMan.style.top = myModel.manPosY+"px";
 
-        //console.log(myModel.manPosX)
-        if(myModel.state == 1){
-            this.moveBones()
+        switch (myModel.state) {
+            case 1:{
+                this.moveBones()
+                break
+            }
+            case 2:{
+                SVGObjectElems[0].style.opacity = 0
+                SVGObjectElems[1].style.opacity = 1
+                break
+            }
+            case 3:{
+                SVGObjectElems[1].style.opacity = 0
+                SVGObjectElems[2].style.opacity = 1
+                break
+            }
+            case 4:{
+                SVGObjectElems[2].style.opacity = 0
+                SVGObjectElems[3].style.opacity = 1
+                break
+            }
+            case 5:{
+                SVGObjectElems[2].style.opacity = 0
+                SVGObjectElems[3].style.opacity = 1
+                break
+            }
+            case 0:{
+                SVGObjectElems[3].style.opacity = 0
+                SVGObjectElems[0].style.opacity = 1
+                break
+            }
+            default:{break}
         }
-        if(myModel.state == 2){
-            SVGObjectElems[0].style.opacity = 0
-            SVGObjectElems[1].style.opacity = 1
-            // SVGObjectElem.data = 'img/sculpt.svg'
-            myModel.state = 3
-            setTimeout(this.throwBall, 2000);
-            setTimeout(this.throwBall_2, 3000);
-            setTimeout(this.normal, 4000);
-        }
-
-    }
-    this.throwBall = function () {
-        SVGObjectElems[1].style.opacity = 0
-        SVGObjectElems[2].style.opacity = 1
-        myModel.state = 4
-    }
-    this.throwBall_2 = function () {
-        SVGObjectElems[2].style.opacity = 0
-        SVGObjectElems[3].style.opacity = 1
-        myModel.state = 6
-    }
-    this.normal = function () {
-        SVGObjectElems[3].style.opacity = 0
-        SVGObjectElems[0].style.opacity = 1
     }
     this.kill = function () {
         conteinerMan.style.zIndex = 0
