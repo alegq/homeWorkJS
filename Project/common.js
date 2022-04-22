@@ -17,21 +17,44 @@ var hashEnemiesPoss = new Object()
 var arrayHashуsEnes = []
 var arrayHashуsHero = []
 
-
 window.onload = imgPos
 
-function imgPos() {
-    var menuGame = document.getElementById('menu')
 
+function imgPos() {
+    var name = document.getElementById('name_inp')
+    console.log(name)
+    var nameStor = window.localStorage.getItem('name')
+    console.log(nameStor)
+    if (nameStor){
+        console.log(6)
+        name.value=nameStor
+    }
+    var menuGame = document.getElementById('menu')
+    var png1 = document.getElementById('png1')
+    var png2 = document.getElementById('png2')
+    png1.style.opacity=1
+    png2.style.opacity=1
     function setTopMenu(newY) {
         menuGame.style.top= newY + '%'
-        console.log(menuGame.style)
+    }
+    function clearPng(){
+        png1.style.opacity=0
+        png2.style.opacity=0
+        menuGame.style.opacity = 0
     }
     setTopMenu(20)
+    var battomPlay = document.getElementById('play')
+    battomPlay.addEventListener('click', play , false)
 
 
     //создаем врагов, помещая их объекты в общий массив [0]-mod,[1]-view,[2]-control
-function Play() {
+function play() {
+    var name = document.getElementById('name_inp')
+    console.log(name)
+
+    name=name.value // достаем имя из поля ввода
+    window.localStorage.setItem('name',name)//кладем имя в хэш
+    clearPng()
 
     for (let i = 0; i<countEnes; i++) {
         var newMan = []
