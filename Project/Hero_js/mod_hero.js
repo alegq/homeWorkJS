@@ -14,7 +14,6 @@ function HeroMod(id) {
         myView.updateViewRed()
     }
     this.blurRedMan = function () {
-        //console.log('blurRedMan')
         myView.state=2
         myView.updateViewRed()
     }
@@ -63,12 +62,15 @@ function HeroMod(id) {
     }
     this.upRedMan = function (){
         myView.state=4
+        clickSound(myView.state)
         myView.updateViewRed()
     }
 
     this.killedMan = function (){
-        myView.state=5
+        myView.state=-1
+        clickSound(this.state)
         myView.updateViewRed()
+        ball.stopBall()
         endGame()
 
     }

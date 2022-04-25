@@ -72,6 +72,16 @@ html {
     border: thick double #f5a142;
 }
 
+.end{
+    position: absolute;
+    top: 40%;
+    left: 35%;
+    width: 40%;
+    height: 20%;
+    font-size: calc(4em);
+
+}
+
 
 button{
     width: 100%;

@@ -38,7 +38,7 @@ function HeroView(id) {
                 SVGObjectElems[3].style.opacity = 1
                 break
             }
-            case 5:{
+            case -1:{
                 SVGObjectElems[0].style.opacity = 0
                 SVGObjectElems[1].style.opacity = 0
                 SVGObjectElems[2].style.opacity = 0

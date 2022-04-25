@@ -16,17 +16,15 @@ var fieldPosY = field.offsetTop
 var hashEnemiesPoss = new Object()
 var arrayHashуsEnes = []
 var arrayHashуsHero = []
+var level=1
 
 window.onload = imgPos
 
 
 function imgPos() {
     var name = document.getElementById('name_inp')
-    console.log(name)
     var nameStor = window.localStorage.getItem('name')
-    console.log(nameStor)
     if (nameStor){
-        console.log(6)
         name.value=nameStor
     }
     var menuGame = document.getElementById('menu')
@@ -48,14 +46,32 @@ function imgPos() {
 
 
     //создаем врагов, помещая их объекты в общий массив [0]-mod,[1]-view,[2]-control
-function play() {
-    var name = document.getElementById('name_inp')
-    console.log(name)
+    function play() {
+        clickSoundInit()      // предзапуск звука по клику на кнопку "Play"
 
-    name=name.value // достаем имя из поля ввода
-    window.localStorage.setItem('name',name)//кладем имя в хэш
-    clearPng()
+        var name = document.getElementById('name_inp')
 
+        name=name.value // достаем имя из поля ввода
+        window.localStorage.setItem('name',name)//кладем имя в хэш
+        clearPng()
+
+        //создаем врагов(зеленые)
+        createEmemies()
+
+        //создаем героя(красный)
+        var newHeroMan = []
+        newHeroMan[0] = new HeroMod('red1')
+        newHeroMan[1] = new HeroView(1)
+        newHeroMan[2] = new ControllerRedMan()
+
+        newHeroMan[0].start(newHeroMan[1])
+        newHeroMan[1].indentific(newHeroMan[0])
+        newHeroMan[2].config(newHeroMan[0])
+        arrayHashуsHero.push(newHeroMan)
+    }
+}
+
+var createEmemies = function () {
     for (let i = 0; i<countEnes; i++) {
         var newMan = []
         newMan[1] = new Enemys_view(i)
@@ -70,29 +86,35 @@ function play() {
     }
 }
 
-    // var view1 = new Enemys_view(1)
-    // var mod1 = new EnemysMod(1)
-    //
-    // view1.indentific(mod1)
-    // mod1.start(view1)
-
-//----------------------
-     var newHeroMan = []
-    newHeroMan[0] = new HeroMod('red1')
-    newHeroMan[1] = new HeroView(1)
-    newHeroMan[2] = new ControllerRedMan()
-//
-    newHeroMan[0].start(newHeroMan[1])
-    newHeroMan[1].indentific(newHeroMan[0])
-    newHeroMan[2].config(newHeroMan[0])
-    arrayHashуsHero.push(newHeroMan)
-}
-
 var endGame = function () {
-    console.log('end')
-   //newHeroMan[2].endGame = true
+    clickSound(-1)
+    clickSound(6)
     arrayHashуsHero[0][2].endGame = true
     arrayHashуsHero[0][2].start()
+
+    for (let i=0; i<arrayHashуsEnes.length;i++){
+        arrayHashуsEnes[0][2].stop()
+    }
+
+
+    var end = document.createElement('div')
+    end.className='end'
+    end.innerHTML = 'Game Over'
+    document.body.appendChild(end)
+}
+
+var startNewLevel = function() {
+    level++
+    var Level = document.createElement('div')
+    Level.className='end'
+    Level.innerHTML = 'Level ' + level
+    document.body.appendChild(Level)
+    setTimeout(updeteEnemis,3000)
+
+    function updeteEnemis(){
+        createEmemies()
+        document.body.removeChild(Level)
+    }
 
 }
 

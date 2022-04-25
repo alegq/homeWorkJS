@@ -20,10 +20,11 @@ function EnemysMod(id) {
     }
 
     this.positionMan = function () {
-        //1-идет; 2-лепит снежку; 3-поднимает руку со снежкой;
+        //1-идет; 2-лепит снежок; 3-поднимает руку со снежком;
         //4-запускаем снежок; 5-возвращаемся в исходное состояние;
         switch (this.state ) {
             case 1:{
+
                 if (Math.atan((pageHeight-this.manPosY)/(this.manPosX))<1 ||
                     this.manPosY+93<fieldPosY|| this.manPosY>fieldPosY+pageHeight/1.7)
                 {
@@ -48,6 +49,7 @@ function EnemysMod(id) {
             }
             case 4:{
                 ball.startMoveBall()
+                clickSound(this.state)
                 this.state=5
             }
             case 5:{
@@ -68,12 +70,17 @@ function EnemysMod(id) {
     }
     this.killed = function () {
         this.state=-1
+        clickSound(this.state)
         clearInterval(tick_e)
         clearTimeout(timeoutThrow)
         clearTimeout(timeoutThrow2)
         clearTimeout(timeoutNormal)
         delete hashEnemiesPoss[EnemID]
         myView.kill()
+        if (Object.keys(hashEnemiesPoss).length  == 1){
+            startNewLevel()
+            clickSound(5)
+        }
         if (ball){
             ball.stopBall()
         }

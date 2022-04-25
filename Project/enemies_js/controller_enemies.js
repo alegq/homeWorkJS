@@ -18,5 +18,9 @@ class ControllerEnemies {
 
             }
     }
+    stop=function () {
+        this.myModel.state=0
+        clearInterval(this.tick_e)
+    }
 }
 

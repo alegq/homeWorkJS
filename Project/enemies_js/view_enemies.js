@@ -34,6 +34,11 @@ function Enemys_view(id) {
         conteinerMan.style.top = myModel.manPosY+"px";
 
         switch (myModel.state) {
+            case 0:{
+                SVGObjectElems[3].style.opacity = 0
+                SVGObjectElems[0].style.opacity = 1
+                break
+            }
             case 1:{
                 this.moveBones()
                 break
@@ -58,11 +63,7 @@ function Enemys_view(id) {
                 SVGObjectElems[3].style.opacity = 1
                 break
             }
-            case 0:{
-                SVGObjectElems[3].style.opacity = 0
-                SVGObjectElems[0].style.opacity = 1
-                break
-            }
+
             default:{break}
         }
     }

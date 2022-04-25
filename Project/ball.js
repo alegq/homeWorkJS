@@ -12,7 +12,6 @@ function Ball_mod() {
     //создаем шар в руке
     var ball = document.createElement('div')
     ball.className='ball'
-    console.log(ball)
     document.body.appendChild(ball)
 
 
@@ -63,7 +62,6 @@ function Ball_mod() {
                 ballPosY>hashEnemiesPoss[k][1]&& ballPosY<hashEnemiesPoss[k][1]+115&& !this.hero)
             {
                 this.stopBall()
-                console.log(arrayHashуsHero)
                 arrayHashуsHero[0][0].killedMan()
 
             }else {
