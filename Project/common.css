@@ -1,5 +1,10 @@
 #field{
     /*background-color: darkgray;*/
+    position: absolute;
+    width: 85% ;
+    height: 85% ;
+    top: 5%;
+    left: 7%;
     background: linear-gradient(45deg, #f5f2f2, #ebdddd);
     margin-left: auto;
     margin-right: auto;
@@ -12,6 +17,7 @@
 
 .red_man{
     opacity: 0;
+
 }
 #r{
     background-color: blue;
@@ -33,12 +39,10 @@
     top: -50%;
     left: 25%;
     width: 50%;
-    height: 50%;
+    height: 40%;
     background-color: #1a2edb;
     border-radius: 5%;
-    /*opacity: 80%;*/
     transition-duration: 0.5s;
-    /*z-index: 5;*/
     -webkit-transition-timing-function: linear; /* для Android */
     transition-timing-function: linear;
 }
@@ -72,13 +76,27 @@ html {
     border: thick double #f5a142;
 }
 
+.record{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #1a2edb;
+    border-radius: 5%;
+
+}
+
+
 .end{
     position: absolute;
     top: 40%;
-    left: 35%;
-    width: 40%;
-    height: 20%;
+    left: 40%;
+    /*width: 40%;*/
+    /*height: 20%;*/
     font-size: calc(4em);
+    text-align: center;
+    z-index: 3;
 
 }
 
@@ -136,5 +154,20 @@ h1{
 }
 #png2{
     opacity: 0;
+}
+
+#ol_rec{
+    background-color: #a6db14;
+    margin: 0% 10% 10% 10% ;
+    opacity: 0%;
+    transition-duration: 1s;
+}
+
+li{
+
+    font-size: calc(2em);
+    margin-left: 5%;
+    transition-duration: 1s;
+    transition-timing-function: linear;
 }
 

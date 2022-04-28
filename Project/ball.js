@@ -14,8 +14,6 @@ function Ball_mod() {
     ball.className='ball'
     document.body.appendChild(ball)
 
-
-
     this.start = function (conrolMan, mod ) {
         myMod = mod
         myConrolMan = conrolMan
@@ -43,6 +41,8 @@ function Ball_mod() {
         tick =setInterval(()=>this.conrolBall(), 30)
     }
     this.conrolBall = function () {
+        pageWidth = document.documentElement.scrollWidth
+        pageHeight = document.documentElement.scrollHeight
 
         //проверяем вышел ли снежок за рамки поля
         if(ballPosX<fieldPosX || ballPosY<fieldPosY
@@ -56,18 +56,22 @@ function Ball_mod() {
                 ballPosY>hashEnemiesPoss[k][1]+108&& ballPosY<hashEnemiesPoss[k][1]+98+95&& this.hero)
             {
                 this.stopBall()
-                arrayHashуsEnes[k][0].killed() //вызываем метод killed у model_enemies убитого человечка
+                arrayHashysEnes[k][0].killed() //вызываем метод killed у model_enemies убитого человечка
                 return;
-            }else if (ballPosX>hashEnemiesPoss[k][0]&& ballPosX<hashEnemiesPoss[k][0]+95 &&
-                ballPosY>hashEnemiesPoss[k][1]&& ballPosY<hashEnemiesPoss[k][1]+115&& !this.hero)
-            {
-                this.stopBall()
-                arrayHashуsHero[0][0].killedMan()
-
-            }else {
-                this.moveBall()
             }
         }
+        for ( let k in hashHeroPoss ){
+            if (ballPosX>hashHeroPoss[k][0]&& ballPosX<hashHeroPoss[k][0]+95 &&
+                 ballPosY>hashHeroPoss[k][1]&& ballPosY<hashHeroPoss[k][1]+115)
+            {
+                    this.stopBall()
+                    arrayHashysHero[0][0].killedMan()
+                    return;
+            }
+        }
+
+        this.moveBall()
+
     }
 
 

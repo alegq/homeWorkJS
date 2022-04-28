@@ -1,7 +1,7 @@
 function HeroMod(id) {
     var myView = null;
-    var manPosX = 500
-    var manPosY = 500
+    var manPosX = null
+    var manPosY = null
     var id = id
     var ball = null
 
@@ -23,14 +23,19 @@ function HeroMod(id) {
         // найдём положение самой картинки относительно страницы
         var posDivMan=getElementPos(EO.target);
 
+        pageWidth = document.documentElement.scrollWidth
+        pageHeight = document.documentElement.scrollHeight
+
         // найдём координаты клика относительно картинки
         var mousedownX=Math.round(EO.pageX-posDivMan.left);
         var mousedownY=Math.round(EO.pageY-posDivMan.top);
 
+        if(!ball){
+            ball= new Ball_mod()       // создаем новый снежок в руке
+            ball.update(posDivMan.left+70,posDivMan.top) //задаем координты для нового снежка
+        }
 
-        ball= new Ball_mod()       // создаем новый снежок в руке
-        ball.update(posDivMan.left+70,posDivMan.top) //задаем координты для нового снежка
-
+        document.body.addEventListener("mouseup",mouseupFun,false)
         document.body.addEventListener("mousemove",mousemoveFun,false)
 
         function mousemoveFun(EO){
@@ -43,16 +48,28 @@ function HeroMod(id) {
             manPosX = clickX-mousedownX
             manPosY = clickY-mousedownY
 
+
             // установим новыен координаты для героя
-            self.style.left=manPosX +"px"
-            self.style.top=manPosY+"px";
-            hashEnemiesPoss[id] = [manPosX,manPosY]// заносим координаты в общий хэш координатов всех персонажей
-            ball.update(clickX-mousedownX+70,clickY-mousedownY) // обновляем координаты для снежка в руке
+            if (manPosY>fieldPosY && manPosY<pageHeight*0.75 && manPosX<pageWidth*0.85) {
+                self.style.left=manPosX +"px"
+                self.style.top=manPosY+"px";
+
+                hashHeroPoss[id] = [manPosX,manPosY]// заносим координаты в общий хэш координатов всех персонажей
+                if(ball){
+                    ball.update(clickX-mousedownX+70,clickY-mousedownY) // обновляем координаты для снежка в руке
+                }
+
+            }
         }
 
-        document.body.addEventListener("mouseup",mouseupFun,false)
         function mouseupFun() {
-            ball.startMoveBall() //запускаем снежок
+            if (ball){
+                ball.startMoveBall() //запускаем снежок
+                ball=null
+                myView.state=4
+                clickSound(myView.state)
+                myView.updateViewRed()
+                }
             document.body.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mouseup",mouseupFun,false)
         }
@@ -60,17 +77,17 @@ function HeroMod(id) {
         myView.state=3
         myView.updateViewRed()
     }
-    this.upRedMan = function (){
-        myView.state=4
-        clickSound(myView.state)
-        myView.updateViewRed()
-    }
+
 
     this.killedMan = function (){
         myView.state=-1
         clickSound(this.state)
         myView.updateViewRed()
-        ball.stopBall()
+        if(ball){
+            ball.stopBall()
+            ball = null
+        }
+
         endGame()
 
     }

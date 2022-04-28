@@ -26,7 +26,6 @@ function clickSound(state) {
 
     switch (state) {
         case 1 :{
-            console.log(9)
             stepAudio.currentTime=0; // в секундах
             stepAudio.play();
             break
@@ -47,8 +46,7 @@ function clickSound(state) {
         }
 
         case -1 :{
-            console.log(state)
-            touchAudio.currentTime=0; // в секундах
+              touchAudio.currentTime=0; // в секундах
             touchAudio.play();
             break
         }

@@ -1,11 +1,12 @@
-
 function HeroView(id) {
     var myModel = null;
-    var myField = null;
     this.state = 0;
 
     var conteinerMan = document.getElementById("red");
-    conteinerMan.id += id
+    conteinerMan = conteinerMan.cloneNode(true)
+    conteinerMan.id = id
+    conteinerMan.style.zIndex=pageHeight
+    document.body.appendChild(conteinerMan)
     var SVGObjectElems = conteinerMan.getElementsByClassName('red_man');
     SVGObjectElems[0].style.opacity = 1
 

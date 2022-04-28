@@ -1,22 +1,23 @@
 function Enemys_view(id) {
     var myModel = null;
-    var myField = null;
 
     var conteinerMan = document.getElementById("-1");
     conteinerMan = conteinerMan.cloneNode(true)
-    document.body.appendChild(conteinerMan)
     conteinerMan.id = id
+    document.body.appendChild(conteinerMan)
     var SVGObjectElems=conteinerMan.getElementsByClassName('green_going');
     var SVGObjectElem=conteinerMan.getElementsByClassName('green_going')[0];
+
     var kneeLeft= null;
     var footLeft= null;
     var footRight= null;
     var arm= null;
     var wrist= null;
     var stateBones = 1
+    var SVGDocument =null
 
-    SVGObjectElem.addEventListener('load', function(){
-        var SVGDocument=SVGObjectElem.contentDocument;
+    SVGObjectElem.addEventListener('load', function(){ //ждем пока загрузится svg
+        SVGDocument=SVGObjectElem.contentDocument;
         kneeLeft=SVGDocument.getElementById("svg_11");
         footLeft=SVGDocument.getElementById("svg_12");
         footRight=SVGDocument.getElementById("svg_15");
@@ -24,7 +25,7 @@ function Enemys_view(id) {
         wrist= SVGDocument.getElementById("svg_25");  //кисть руки
 
         });
-    this.indentific = function (model, field) {
+    this.indentific = function (model) {
         myModel = model
         SVGObjectElems[0].style.opacity = 1
     }
@@ -32,6 +33,7 @@ function Enemys_view(id) {
     this.moveMan = function (){
         conteinerMan.style.left= myModel.manPosX+"px";
         conteinerMan.style.top = myModel.manPosY+"px";
+        conteinerMan.style.zIndex = myModel.manPosY
 
         switch (myModel.state) {
             case 0:{
@@ -74,13 +76,12 @@ function Enemys_view(id) {
         SVGObjectElems[2].style.opacity = 0
         SVGObjectElems[3].style.opacity = 0
         SVGObjectElems[4].style.opacity = 1
-        setTimeout(()=>{document.body.removeChild(conteinerMan)}, 3000);
     }
 
 
     this.moveBones = function () {
 
-        if(stateBones) {
+        if(stateBones && SVGDocument) {
             kneeLeft.setAttribute("transform", "rotate(25.9557 74.8135 197.383)");
             kneeLeft.setAttribute("cx", "74.81346");
             kneeLeft.setAttribute("cy", "197.38342");
@@ -98,7 +99,7 @@ function Enemys_view(id) {
             wrist.setAttribute("cy", "183.1817")
             arm.setAttribute("d", "m76.35716,193.63976c-3.69105,0 -6.6808,-2.96021 -6.6808,-6.6148c0,-3.65458 2.98974,-6.6148 6.6808,-6.6148c3.69105,0 6.6808,2.96021 6.6808,6.6148c0,3.65458 -2.98974,6.6148 -6.6808,6.6148z")
             stateBones=0
-        }else {
+        }else if(SVGDocument) {
             kneeLeft.setAttribute("transform", "rotate(-1.17307 75.6135 197.383)");
             kneeLeft.setAttribute("cx", "75.61346");
             kneeLeft.setAttribute("cy", "197.38342");

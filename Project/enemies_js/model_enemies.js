@@ -1,10 +1,11 @@
 function EnemysMod(id) {
     this.state = 1;
     var myView = null;
-    this.manPosX = 300
-    this.manPosY = 300 //+ ((Math.random() < 0.5) ? -1 : 1)*150;
+    this.manPosX =  fieldPosX+50 + Math.round(Math.random()*300)
+    this.manPosY = fieldPosY + Math.round(Math.random()*350)
+    //this.manPosY = 100 + ((Math.random() < 0.5) ? -1 : 1)*150;
     this.speedX = 3
-    this.speedY = 3//*  ((Math.random() < 0.5) ? -1 : 1)
+    this.speedY = 3//  ((Math.random() < 0.5) ? -1 : 1)
     var EnemID = id
     var ball = null
 
@@ -24,9 +25,8 @@ function EnemysMod(id) {
         //4-запускаем снежок; 5-возвращаемся в исходное состояние;
         switch (this.state ) {
             case 1:{
-
                 if (Math.atan((pageHeight-this.manPosY)/(this.manPosX))<1 ||
-                    this.manPosY+93<fieldPosY|| this.manPosY>fieldPosY+pageHeight/1.7)
+                    this.manPosY+93<fieldPosY|| this.manPosY>fieldPosY+pageHeight/1.7 )
                 {
                     this.speedX = 0;
                     this.speedY = 0;
@@ -35,6 +35,7 @@ function EnemysMod(id) {
                 break
             }
             case 2:{
+
                 timeoutThrow=setTimeout(()=>this.state=3, 1000);
                 break
             }
@@ -69,18 +70,22 @@ function EnemysMod(id) {
         myView.moveMan()
     }
     this.killed = function () {
+        this.clearEny()
         this.state=-1
         clickSound(this.state)
+        myView.kill()
+        if (Object.keys(hashEnemiesPoss).length  == 0){
+            startNewLevel()
+            clickSound(5)
+        }
+    }
+    this.clearEny = function(){
+        setTimeout(()=>{document.body.removeChild(document.getElementById(id))}, 2000);
         clearInterval(tick_e)
         clearTimeout(timeoutThrow)
         clearTimeout(timeoutThrow2)
         clearTimeout(timeoutNormal)
         delete hashEnemiesPoss[EnemID]
-        myView.kill()
-        if (Object.keys(hashEnemiesPoss).length  == 1){
-            startNewLevel()
-            clickSound(5)
-        }
         if (ball){
             ball.stopBall()
         }
