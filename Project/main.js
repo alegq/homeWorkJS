@@ -16,7 +16,7 @@ var menuGame = document.getElementById('menu')
 var battomPlay = document.getElementById('play')
 var battomRecords = document.getElementById('records')
 
-window.onload = imgPos  //дожидаемся загрузки всей страницы
+//window.onload = imgPos  //дожидаемся загрузки всей страницы
 
 function imgPos() {
     var nameInp = document.getElementById('name_inp')
@@ -43,6 +43,7 @@ function clearPngAndMenu(){
 }
 
 function play() {
+    switchToPlayPage()
     clickSoundInit()      // предзапуск звука по клику на кнопку "Play"
     var nameInp = document.getElementById('name_inp')
     name=nameInp.value         // достаем имя из поля ввода
@@ -64,7 +65,10 @@ function play() {
 function setTopMenu() {
     menuGame.style.top= 20 + '%'
     menuGame.style.opacity = 1
-    battomPlay.addEventListener('click', play , false)
+    //battomPlay.addEventListener('click', play , false
+
+    battomPlay.addEventListener('click', switchToPlayPage , false)
+
     battomRecords.addEventListener('click', createRecords , false)
 }
 
@@ -120,18 +124,37 @@ var endGame = function () {
        
     function clearSpase(){
         document.body.removeChild(end);
-        setTopMenu()
+        //setTopMenu()
         arrayHashysHero.forEach((x,i)=>{document.body.removeChild(document.getElementById('red'+i))})
-        arrayHashysEnes.forEach((x,i)=>{console.log(x[0]);x[0].clearEny()})
+        arrayHashysEnes.forEach((x,i)=>{document.body.removeChild(document.getElementById(i))})
         countEnes = 1
         hashEnemiesPoss = {}
         hashHeroPoss    = {}
         arrayHashysEnes = []
         arrayHashysHero = []
         level=1
+        switchToMenuPage()
+
     }
 
 }
+
+function clearSpas(){
+    if (arrayHashysHero.length!=0){
+        arrayHashysHero.forEach((x,i)=>{document.body.removeChild(document.getElementById('red'+i))})
+    }
+    if (arrayHashysEnes.length!=0){
+        arrayHashysEnes.forEach((x,i)=>{document.body.removeChild(document.getElementById(i))})
+    }
+    countEnes = 1
+    hashEnemiesPoss = {}
+    hashHeroPoss    = {}
+    arrayHashysEnes = []
+    arrayHashysHero = []
+    level=1
+}
+
+
 
 
 
