@@ -1,14 +1,14 @@
+"use strict";
 function EnemysMod(id) {
     this.state = 1;
     var myView = null;
-    this.manPosX =  fieldPosX+50 + Math.round(Math.random()*300)
-    this.manPosY = fieldPosY + Math.round(Math.random()*350)
-    //this.manPosY = 100 + ((Math.random() < 0.5) ? -1 : 1)*150;
-    this.speedX = 3
-    this.speedY = 3//  ((Math.random() < 0.5) ? -1 : 1)
+    this.manPosX =  10+ Math.floor(Math.random() * (35 - 0)) + 0;
+    this.manPosY = 5 + Math.floor(Math.random() * (40 - 0)) + 0;
+    var lineStop = Math.random() * (0.4 - 0.1) + 0.1
+    this.speedX = 0.3
+    this.speedY = 0.3//  ((Math.random() < 0.5) ? -1 : 1)
     var EnemID = id
     var ball = null
-
     var tick_e = null //переменная для setInterval
     var timeoutThrow= null //переменная для setTimeout(поднять руку)
     var timeoutThrow2= null //переменная для setTimeout(сделать бросок)
@@ -23,10 +23,15 @@ function EnemysMod(id) {
     this.positionMan = function () {
         //1-идет; 2-лепит снежок; 3-поднимает руку со снежком;
         //4-запускаем снежок; 5-возвращаемся в исходное состояние;
+        pageWidth = document.documentElement.scrollWidth
+        pageHeight = document.documentElement.scrollHeight
+
+        var x = pageWidth * this.manPosY/100
+
         switch (this.state ) {
             case 1:{
-                if (Math.atan((pageHeight-this.manPosY)/(this.manPosX))<1 ||
-                    this.manPosY+93<fieldPosY|| this.manPosY>fieldPosY+pageHeight/1.7 )
+                if (Math.atan((100-this.manPosY)/(this.manPosX))<1 +lineStop  ||
+                    this.manPosY+93<fieldPosY|| this.manPosY>85 )
                 {
                     this.speedX = 0;
                     this.speedY = 0;
@@ -42,9 +47,11 @@ function EnemysMod(id) {
             case 3:{
                 if (!ball){
                     ball= new Ball_mod()       // создаем новый снежок в руке
-                    ball.update(this.manPosX+40,this.manPosY+125)       //задаем координты для нового снежк
                     ball.hero=false           // указываем что снежок от врага
                     timeoutThrow2=setTimeout(()=>this.state=4, 1000);
+                }
+                if (ball){
+                    ball.update(pageWidth * this.manPosX/100+40,pageHeight * this.manPosY/100+125)       //задаем координты для снежка
                 }
                 break
             }
@@ -66,7 +73,7 @@ function EnemysMod(id) {
     this.moveMan = function (){
         this.manPosX += this.speedX;
         this.manPosY += this.speedY;
-        hashEnemiesPoss[EnemID] = [this.manPosX,this.manPosY]
+        hashEnemiesPoss[EnemID] = [pageWidth * this.manPosX/100,pageHeight * this.manPosY/100]
         myView.moveMan()
     }
     this.killed = function () {
@@ -78,9 +85,10 @@ function EnemysMod(id) {
             startNewLevel()
             clickSound(5)
         }
+        setTimeout(()=>{document.body.removeChild(document.getElementById(id))}, 2000);
+
     }
     this.clearEny = function(){
-        setTimeout(()=>{document.body.removeChild(document.getElementById(id))}, 2000);
         clearInterval(tick_e)
         clearTimeout(timeoutThrow)
         clearTimeout(timeoutThrow2)

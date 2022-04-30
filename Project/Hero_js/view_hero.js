@@ -1,3 +1,4 @@
+"use strict";
 function HeroView(id) {
     var myModel = null;
     this.state = 0;
@@ -45,6 +46,7 @@ function HeroView(id) {
                 SVGObjectElems[2].style.opacity = 0
                 SVGObjectElems[3].style.opacity = 0
                 SVGObjectElems[4].style.opacity = 1
+                conteinerMan.style.overflow='visible'
                 break
             }
             default:{

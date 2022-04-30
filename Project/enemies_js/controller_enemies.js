@@ -1,3 +1,4 @@
+"use strict";
 class ControllerEnemies {
     constructor(){
         this.myModel = null; // с какой моделью работаем

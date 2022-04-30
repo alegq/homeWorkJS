@@ -3,13 +3,14 @@
     position: absolute;
     width: 85% ;
     height: 85% ;
+    min-width: 400px;
+    min-height: 500px;
     top: 5%;
     left: 7%;
     background: linear-gradient(45deg, #f5f2f2, #ebdddd);
     margin-left: auto;
     margin-right: auto;
     border: thick double #32a1ce;
-
 }
 .green_going{
     opacity: 0;
@@ -38,6 +39,7 @@
     position: absolute;
     top: -50%;
     left: 25%;
+    min-height: 350px;
     width: 50%;
     height: 40%;
     background-color: #1a2edb;
@@ -86,8 +88,6 @@ html {
     border-radius: 5%;
 
 }
-
-
 .end{
     position: absolute;
     top: 40%;
@@ -99,15 +99,14 @@ html {
     z-index: 3;
 
 }
-
-
 button{
     width: 100%;
     height: 100%;
     min-width: 150px;
     min-height: 40px;
     font: inherit;
-    font-size: calc(2em);
+    /*font-size: calc(2em);*/
+    font-size: 200%;
     cursor: pointer;
     background-color: aquamarine;
     border: none;

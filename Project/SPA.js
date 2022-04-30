@@ -33,10 +33,13 @@ function switchToStateFromURLHash() {
         var parts = stateStr.split("_");
         SPAState = {pagename: parts[0]}; // первая часть закладки - номер страницы
     } else {
-        SPAState = {pagename: 'Menu'}; // иначе показываем главную страницу
+        SPAState = {pagename: 'Menu_start'}; // иначе показываем главную страницу
     }
 
     switch (SPAState.pagename) {
+        case 'Menu_start':{
+            window.onload = imgPos
+        }
         case 'Menu':
             clearSpas()
             imgPos()
@@ -44,6 +47,8 @@ function switchToStateFromURLHash() {
         case 'Play':
             play()
             break;
+        case 'Record':
+
     }
 }
 // устанавливает в закладке УРЛа новое состояние приложения

@@ -68,6 +68,7 @@ function createRecords() {
         menuGame.removeChild(recDiv)
         menuGame.style.height = '40%'
         menuGame.style.transitionDuration = '0.5s'
+        menuGame.style.minHeight = '350px'
     }else {
         recDiv = document.createElement('div')
         recDiv.id = 'rec_field'
@@ -75,6 +76,7 @@ function createRecords() {
         menuGame.appendChild(recDiv)
 
         menuGame.style.height = '62%'
+        menuGame.style.minHeight = '600px'
         menuGame.style.transitionDuration = '0s'
         recDiv.innerHTML = recDiv.innerHTML + '<h1 id="head_rec">Список рекордов:</h1>' + ' <ol id="ol_rec">\n' +
             '    <li></li>\n' +

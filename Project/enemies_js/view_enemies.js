@@ -1,13 +1,12 @@
+"use strict";
 function Enemys_view(id) {
     var myModel = null;
-
     var conteinerMan = document.getElementById("-1");
     conteinerMan = conteinerMan.cloneNode(true)
     conteinerMan.id = id
     document.body.appendChild(conteinerMan)
     var SVGObjectElems=conteinerMan.getElementsByClassName('green_going');
     var SVGObjectElem=conteinerMan.getElementsByClassName('green_going')[0];
-
     var kneeLeft= null;
     var footLeft= null;
     var footRight= null;
@@ -31,8 +30,10 @@ function Enemys_view(id) {
     }
 
     this.moveMan = function (){
-        conteinerMan.style.left= myModel.manPosX+"px";
-        conteinerMan.style.top = myModel.manPosY+"px";
+        pageWidth = document.documentElement.scrollWidth
+        pageHeight = document.documentElement.scrollHeight
+        conteinerMan.style.left=Math.round(pageWidth * myModel.manPosX/100)+"px";
+        conteinerMan.style.top =Math.round( pageHeight * myModel.manPosY/100)+"px";
         conteinerMan.style.zIndex = myModel.manPosY
 
         switch (myModel.state) {

@@ -1,3 +1,4 @@
+"use strict";
 var throwAudio=new Audio("audio/throw.mp3");
 var touchAudio = new Audio("audio/touch.mp3")
 var stepAudio = new Audio("audio/steps_snow.mp3")

@@ -1,9 +1,14 @@
+"use strict";
 function HeroMod(id) {
     var myView = null;
     var manPosX = null
     var manPosY = null
     var id = id
     var ball = null
+    var tick =null
+    var selfs=this
+    var manPosXProc = 70
+    var manPosYProc = 70
 
     this.start = function (view) {
         myView = view
@@ -12,10 +17,13 @@ function HeroMod(id) {
     this.focusRedMan = function () {
         myView.state=1
         myView.updateViewRed()
+        clearInterval(tick)
     }
-    this.blurRedMan = function () {
+    this.blurRedMan = function (EO) {
+        var self = EO.target
         myView.state=2
         myView.updateViewRed()
+        tick = setInterval(()=>selfs.updateD(self),40)
     }
     this.downRedMan = function (EO){
         EO=EO||window.event;
@@ -48,11 +56,13 @@ function HeroMod(id) {
             manPosX = clickX-mousedownX
             manPosY = clickY-mousedownY
 
-
             // установим новыен координаты для героя
-            if (manPosY>fieldPosY && manPosY<pageHeight*0.75 && manPosX<pageWidth*0.85) {
+            if (manPosY>pageHeight*0.05 && manPosY<pageHeight*0.05+pageHeight*0.85-115 && manPosX<pageWidth*0.07+pageWidth*0.85-90 && manPosX>pageHeight*0.07) {
                 self.style.left=manPosX +"px"
                 self.style.top=manPosY+"px";
+
+                manPosXProc=manPosX*100/pageWidth
+                manPosYProc=manPosY*100/pageHeight
 
                 hashHeroPoss[id] = [manPosX,manPosY]// заносим координаты в общий хэш координатов всех персонажей
                 if(ball){
@@ -61,7 +71,6 @@ function HeroMod(id) {
 
             }
         }
-
         function mouseupFun() {
             if (ball){
                 ball.startMoveBall() //запускаем снежок
@@ -73,7 +82,6 @@ function HeroMod(id) {
             document.body.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mouseup",mouseupFun,false)
         }
-
         myView.state=3
         myView.updateViewRed()
     }
@@ -87,9 +95,12 @@ function HeroMod(id) {
             ball.stopBall()
             ball = null
         }
-
         endGame()
+    }
 
+    this.updateD = function (self){
+        self.style.left=pageWidth*manPosXProc/100 +"px"
+        self.style.top=pageHeight*manPosYProc/100 +"px"
     }
 
     //------------------

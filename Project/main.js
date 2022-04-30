@@ -1,3 +1,4 @@
+"use strict";
 var pageWidth = document.documentElement.scrollWidth
 var pageHeight = document.documentElement.scrollHeight
 var countEnes = 1 // начальное количество врагов(зеленые человечки)
@@ -5,8 +6,8 @@ var hashEnemiesPoss = new Object() //хэш содержащий позиции 
 var hashHeroPoss = new Object() //хэш содержащий позиции всех героев
 var arrayHashysEnes = []  //массив со всеми врагами
 var arrayHashysHero = [] //массив со всеми героями(если их будет несколько, в данной реализации только 1)
-var level=1             //счетчик уровня
-var name                //имя пользователя
+var level=0             //счетчик уровня
+var ysername                //имя пользователя
 
 var field = document.getElementById('field') //поля игры
 var fieldPosX = field.offsetLeft  //положение поля
@@ -16,7 +17,14 @@ var menuGame = document.getElementById('menu')
 var battomPlay = document.getElementById('play')
 var battomRecords = document.getElementById('records')
 
-//window.onload = imgPos  //дожидаемся загрузки всей страницы
+window.onbeforeunload=befUnload;
+
+function befUnload(EO) {
+    EO=EO||window.event;
+    // если текст изменён, попросим браузер задать вопрос пользователю
+    if ( level!=0 )
+        EO.returnValue='А у вас есть несохранённые изменения!';
+};
 
 function imgPos() {
     var nameInp = document.getElementById('name_inp')
@@ -24,7 +32,6 @@ function imgPos() {
     if (nameStor){
         nameInp.value=nameStor
     }
-
     var png1 = document.getElementById('png1')
     var png2 = document.getElementById('png2')
     png1.style.opacity=1
@@ -43,10 +50,11 @@ function clearPngAndMenu(){
 }
 
 function play() {
+    level=1
     switchToPlayPage()
     clickSoundInit()      // предзапуск звука по клику на кнопку "Play"
     var nameInp = document.getElementById('name_inp')
-    name=nameInp.value         // достаем имя из поля ввода
+    ysername=nameInp.value         // достаем имя из поля ввода
     window.localStorage.setItem('name',name)//кладем имя в Storage
     clearPngAndMenu()       // убираем меню и png изображения
     createEmemies()     //создаем врагов(зеленые)
@@ -65,10 +73,8 @@ function play() {
 function setTopMenu() {
     menuGame.style.top= 20 + '%'
     menuGame.style.opacity = 1
-    //battomPlay.addEventListener('click', play , false
 
     battomPlay.addEventListener('click', switchToPlayPage , false)
-
     battomRecords.addEventListener('click', createRecords , false)
 }
 
@@ -114,29 +120,14 @@ var endGame = function () {
         arrayHashysEnes[i][2].stop()
     }
 
-
     var end = document.createElement('div')
     end.className='end'
     end.innerHTML = 'Game Over   <br>'+'    result:' + (level-1)
+    end.style.zIndex=pageHeight
     document.body.appendChild(end)
     addRec()  // добавляем результат в рекорды
-    setTimeout(clearSpase,4000)
-       
-    function clearSpase(){
-        document.body.removeChild(end);
-        //setTopMenu()
-        arrayHashysHero.forEach((x,i)=>{document.body.removeChild(document.getElementById('red'+i))})
-        arrayHashysEnes.forEach((x,i)=>{document.body.removeChild(document.getElementById(i))})
-        countEnes = 1
-        hashEnemiesPoss = {}
-        hashHeroPoss    = {}
-        arrayHashysEnes = []
-        arrayHashysHero = []
-        level=1
-        switchToMenuPage()
-
-    }
-
+    setTimeout(clearSpas,4000)
+    setTimeout(()=>{document.body.removeChild(end)},4000)
 }
 
 function clearSpas(){
@@ -144,14 +135,15 @@ function clearSpas(){
         arrayHashysHero.forEach((x,i)=>{document.body.removeChild(document.getElementById('red'+i))})
     }
     if (arrayHashysEnes.length!=0){
-        arrayHashysEnes.forEach((x,i)=>{document.body.removeChild(document.getElementById(i))})
+        arrayHashysEnes.forEach((x,i)=>{console.log(x[0]);x[0].clearEny(); document.body.removeChild(document.getElementById(i))})
     }
     countEnes = 1
     hashEnemiesPoss = {}
     hashHeroPoss    = {}
     arrayHashysEnes = []
     arrayHashysHero = []
-    level=1
+    level=0
+    switchToMenuPage()
 }
 
 

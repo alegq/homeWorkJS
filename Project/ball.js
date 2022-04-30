@@ -1,3 +1,4 @@
+"use strict";
 function Ball_mod() {
     var myMod = null;
     var myConrolMan= null;
