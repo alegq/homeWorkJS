@@ -16,6 +16,7 @@ var fieldPosY = field.offsetTop   //положение поля
 var menuGame = document.getElementById('menu')
 var battomPlay = document.getElementById('play')
 var battomRecords = document.getElementById('records')
+var menu = false
 
 window.onbeforeunload=befUnload;
 
@@ -45,13 +46,15 @@ function clearPngAndMenu(){
     png1.style.opacity=0
     png2.style.opacity=0
     menuGame.style.opacity = 0
-    battomPlay.removeEventListener('click', play , false)
-    battomRecords.removeEventListener('click', createRecords , false)
+    battomPlay.removeEventListener('click', switchToPlayPage , false)
+    battomRecords.removeEventListener('click', switchToRecordsPage , false)
+    menu=false
 }
 
 function play() {
     level=1
-    switchToPlayPage()
+    removeRecords()
+    //switchToPlayPage()
     clickSoundInit()      // предзапуск звука по клику на кнопку "Play"
     var nameInp = document.getElementById('name_inp')
     ysername=nameInp.value         // достаем имя из поля ввода
@@ -75,7 +78,8 @@ function setTopMenu() {
     menuGame.style.opacity = 1
 
     battomPlay.addEventListener('click', switchToPlayPage , false)
-    battomRecords.addEventListener('click', createRecords , false)
+    battomRecords.addEventListener('click', switchToPreRecordsPage , false)
+    menu = true
 }
 
 var createEmemies = function () {
@@ -126,7 +130,7 @@ var endGame = function () {
     end.style.zIndex=pageHeight
     document.body.appendChild(end)
     addRec()  // добавляем результат в рекорды
-    setTimeout(clearSpas,4000)
+    setTimeout(()=>{clearSpas(); switchToMenuPage()},4000)
     setTimeout(()=>{document.body.removeChild(end)},4000)
 }
 
@@ -143,7 +147,7 @@ function clearSpas(){
     arrayHashysEnes = []
     arrayHashysHero = []
     level=0
-    switchToMenuPage()
+    //switchToMenuPage()
 }
 
 

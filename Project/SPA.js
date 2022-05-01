@@ -41,15 +41,25 @@ function switchToStateFromURLHash() {
             window.onload = imgPos
         }
         case 'Menu':
-            clearSpas()
-            imgPos()
+            removeRecords()
+            if(!menu){
+                clearSpas()
+                imgPos()
+            }
             break;
         case 'Play':
             play()
             break;
-        case 'Record':
-
+        case 'PreRecords':
+            switchToRecordsPage()
+            break;
+        case 'Records':
+            restoreInfo();
+            clearSpas()
+            createRecords()
+            break;
     }
+    console.log(SPAState.pagename)
 }
 // устанавливает в закладке УРЛа новое состояние приложения
 // и затем устанавливает+отображает это состояние
@@ -71,6 +81,12 @@ function switchToMenuPage() {
 
 function switchToPlayPage() {
     switchToState( { pagename:'Play' } );
+}
+function switchToPreRecordsPage() {
+    switchToState( { pagename:'PreRecords' } );
+}
+function switchToRecordsPage() {
+    switchToState( { pagename:'Records' } );
 }
 
     // переключаемся в состояние, которое сейчас прописано в закладке УРЛ

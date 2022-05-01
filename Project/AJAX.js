@@ -50,6 +50,12 @@ function readReady(callresult) {
     else if ( callresult.result!="" ) {
         var info=JSON.parse(callresult.result);
         infoRec=info
+        var recLi = document.getElementsByTagName('li')
+        if(recLi){
+            for(let i=0; i<recLi.length; i++){
+                recLi[i].innerText = infoRec[i].name +'  ' + infoRec[i].record
+            }
+        }
     }
 }
 
@@ -65,11 +71,12 @@ function createRecords() {
     var recDiv = document.getElementById('rec_field')
 
     if (recDiv){
-        menuGame.removeChild(recDiv)
-        menuGame.style.height = '40%'
-        menuGame.style.transitionDuration = '0.5s'
-        menuGame.style.minHeight = '350px'
+        removeRecords()
+        switchToMenuPage()
     }else {
+        if(!menu){
+            setTopMenu()
+        }
         recDiv = document.createElement('div')
         recDiv.id = 'rec_field'
 
@@ -89,11 +96,23 @@ function createRecords() {
         olRec.style.opacity='100%'
 
         var recLi = document.getElementsByTagName('li')
+        console.log(infoRec)
         for(let i=0; i<recLi.length; i++){
             recLi[i].innerText = infoRec[i].name +'  ' + infoRec[i].record
         }
     }
 
+}
+
+function removeRecords(){
+    var menuGame = document.getElementById('menu')
+    var recDiv = document.getElementById('rec_field')
+    if (recDiv){
+        menuGame.removeChild(recDiv)
+        menuGame.style.height = '40%'
+        menuGame.style.transitionDuration = '0.5s'
+        menuGame.style.minHeight = '350px'
+    }
 }
 
 function addRec() {
@@ -113,8 +132,6 @@ function addRec() {
         infoRec.reverse().pop()
         return infoRec
     }
-
-
 
     storeInfo() // записываем данные на сервер
 }
