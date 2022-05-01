@@ -51,7 +51,7 @@ function EnemysMod(id) {
                     timeoutThrow2=setTimeout(()=>this.state=4, 1000);
                 }
                 if (ball){
-                    ball.update(pageWidth * this.manPosX/100+40,pageHeight * this.manPosY/100+125)       //задаем координты для снежка
+                    ball.update(pageWidth * this.manPosX/100+pageWidth*0.02,pageWidth * 0.45* this.manPosY/100+pageWidth*0.068)       //задаем координты для снежка
                 }
                 break
             }
@@ -73,7 +73,7 @@ function EnemysMod(id) {
     this.moveMan = function (){
         this.manPosX += this.speedX;
         this.manPosY += this.speedY;
-        hashEnemiesPoss[EnemID] = [pageWidth * this.manPosX/100,pageHeight * this.manPosY/100]
+        hashEnemiesPoss[EnemID] = [pageWidth * this.manPosX/100,pageWidth * 0.45* this.manPosY/100]
         myView.moveMan()
     }
     this.killed = function () {

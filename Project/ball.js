@@ -6,8 +6,8 @@ function Ball_mod() {
     this.hero = true // оределяем герою или врагу принадлежит снежок
     var ballPosX = 0
     var ballPosY = 0
-    var speedX = 10
-    var speedY = 10
+    var speedX = 12
+    var speedY = 12
     var tick = null
 
     //создаем шар в руке
@@ -47,7 +47,7 @@ function Ball_mod() {
 
         //проверяем вышел ли снежок за рамки поля
         if(ballPosX<fieldPosX || ballPosY<fieldPosY
-            ||ballPosX<fieldPosX>fieldPosX+pageWidth/1.2 || ballPosY>fieldPosY+pageHeight/1.2
+            ||ballPosX<fieldPosX>fieldPosX+pageWidth/1.2 || ballPosY>fieldPosY+pageWidth*0.55/1.2
         ){
             this.stopBall()
         }
@@ -63,7 +63,7 @@ function Ball_mod() {
         }
         for ( let k in hashHeroPoss ){
             if (ballPosX>hashHeroPoss[k][0]&& ballPosX<hashHeroPoss[k][0]+95 &&
-                 ballPosY>hashHeroPoss[k][1]&& ballPosY<hashHeroPoss[k][1]+115)
+                 ballPosY>hashHeroPoss[k][1]&& ballPosY<hashHeroPoss[k][1]+115&& !this.hero)
             {
                     this.stopBall()
                     arrayHashysHero[0][0].killedMan()

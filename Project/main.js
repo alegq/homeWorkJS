@@ -139,7 +139,7 @@ function clearSpas(){
         arrayHashysHero.forEach((x,i)=>{document.body.removeChild(document.getElementById('red'+i))})
     }
     if (arrayHashysEnes.length!=0){
-        arrayHashysEnes.forEach((x,i)=>{console.log(x[0]);x[0].clearEny(); document.body.removeChild(document.getElementById(i))})
+        arrayHashysEnes.forEach((x,i)=>{document.body.removeChild(document.getElementById(i))})
     }
     countEnes = 1
     hashEnemiesPoss = {}

@@ -1,15 +1,22 @@
+body{
+    position: relative;
+    width: 85%;
+    padding-bottom: 45%;
+    float: left;
+    height: 0;
+}
 #field{
     /*background-color: darkgray;*/
     position: absolute;
-    width: 85% ;
-    height: 85% ;
-    min-width: 400px;
-    min-height: 500px;
+    width: 100% ;
+    height: 100% ;
+    /*//min-width: 400px;*/
+    /*min-height: 500px;*/
     top: 5%;
     left: 7%;
     background: linear-gradient(45deg, #f5f2f2, #ebdddd);
-    margin-left: auto;
-    margin-right: auto;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
     border: thick double #32a1ce;
 }
 .green_going{
@@ -26,8 +33,8 @@
 
 .ball{
     z-index: 1;
-    width: 18px;
-    height: 18px;
+    width: 1%;
+    height: 2%;
     position: absolute;
     top: 100px;
     left: 200px;

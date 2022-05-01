@@ -59,7 +59,6 @@ function switchToStateFromURLHash() {
             createRecords()
             break;
     }
-    console.log(SPAState.pagename)
 }
 // устанавливает в закладке УРЛа новое состояние приложения
 // и затем устанавливает+отображает это состояние

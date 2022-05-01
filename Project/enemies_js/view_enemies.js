@@ -33,7 +33,10 @@ function Enemys_view(id) {
         pageWidth = document.documentElement.scrollWidth
         pageHeight = document.documentElement.scrollHeight
         conteinerMan.style.left=Math.round(pageWidth * myModel.manPosX/100)+"px";
-        conteinerMan.style.top =Math.round( pageHeight * myModel.manPosY/100)+"px";
+        conteinerMan.style.top =Math.round( pageWidth*0.45* myModel.manPosY/100)+"px";
+        conteinerMan.style.width=Math.round(pageWidth*0.14)+"px";
+        conteinerMan.style.height =Math.round( pageWidth*0.14*1.4)+"px";
+
         conteinerMan.style.zIndex = myModel.manPosY
 
         switch (myModel.state) {

@@ -96,7 +96,6 @@ function createRecords() {
         olRec.style.opacity='100%'
 
         var recLi = document.getElementsByTagName('li')
-        console.log(infoRec)
         for(let i=0; i<recLi.length; i++){
             recLi[i].innerText = infoRec[i].name +'  ' + infoRec[i].record
         }

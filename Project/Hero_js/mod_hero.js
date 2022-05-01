@@ -9,21 +9,24 @@ function HeroMod(id) {
     var selfs=this
     var manPosXProc = 70
     var manPosYProc = 70
+    var manWidth = 95
+    var manHeight = 115
 
     this.start = function (view) {
         myView = view
+        tick = setInterval(()=>this.updateD(),40)
     }
 
     this.focusRedMan = function () {
         myView.state=1
         myView.updateViewRed()
-        clearInterval(tick)
+        //clearInterval(tick)
     }
     this.blurRedMan = function (EO) {
         var self = EO.target
         myView.state=2
         myView.updateViewRed()
-        tick = setInterval(()=>selfs.updateD(self),40)
+        // tick = setInterval(()=>selfs.updateD(self),40)
     }
     this.downRedMan = function (EO){
         EO=EO||window.event;
@@ -40,7 +43,8 @@ function HeroMod(id) {
 
         if(!ball){
             ball= new Ball_mod()       // создаем новый снежок в руке
-            ball.update(posDivMan.left+70,posDivMan.top) //задаем координты для нового снежка
+            ball.hero=true
+            ball.update(posDivMan.left+pageWidth*0.032,posDivMan.top-pageWidth*0.003) //задаем координты для нового снежка
         }
 
         document.body.addEventListener("mouseup",mouseupFun,false)
@@ -57,16 +61,16 @@ function HeroMod(id) {
             manPosY = clickY-mousedownY
 
             // установим новыен координаты для героя
-            if (manPosY>pageHeight*0.05 && manPosY<pageHeight*0.05+pageHeight*0.85-115 && manPosX<pageWidth*0.07+pageWidth*0.85-90 && manPosX>pageHeight*0.07) {
+            if (manPosY>pageWidth*0.5*0.05 && manPosY<pageWidth*0.55*0.05+pageWidth*0.45*0.85 && manPosX<pageWidth*0.07+pageWidth*0.85-pageWidth*0.05 && manPosX>pageWidth*0.07) {
                 self.style.left=manPosX +"px"
                 self.style.top=manPosY+"px";
 
                 manPosXProc=manPosX*100/pageWidth
-                manPosYProc=manPosY*100/pageHeight
+                manPosYProc=manPosY*100/(pageWidth*0.45)
 
                 hashHeroPoss[id] = [manPosX,manPosY]// заносим координаты в общий хэш координатов всех персонажей
                 if(ball){
-                    ball.update(clickX-mousedownX+70,clickY-mousedownY) // обновляем координаты для снежка в руке
+                    ball.update(clickX-mousedownX+pageWidth*0.035,clickY-mousedownY) // обновляем координаты для снежка в руке
                 }
 
             }
@@ -78,7 +82,7 @@ function HeroMod(id) {
                 myView.state=4
                 clickSound(myView.state)
                 myView.updateViewRed()
-                }
+            }
             document.body.removeEventListener("mousemove",mousemoveFun,false)
             document.body.removeEventListener("mouseup",mouseupFun,false)
         }
@@ -88,6 +92,7 @@ function HeroMod(id) {
 
 
     this.killedMan = function (){
+        clearInterval(tick)
         myView.state=-1
         clickSound(this.state)
         myView.updateViewRed()
@@ -98,9 +103,12 @@ function HeroMod(id) {
         endGame()
     }
 
-    this.updateD = function (self){
-        self.style.left=pageWidth*manPosXProc/100 +"px"
-        self.style.top=pageHeight*manPosYProc/100 +"px"
+    this.updateD = function (){
+        var conteinerMan = document.getElementById(id);
+        conteinerMan.style.left=pageWidth*manPosXProc/100 +"px"
+        conteinerMan.style.top=pageWidth*0.45*manPosYProc/100 +"px"
+        conteinerMan.style.width=pageWidth*0.05+"px"
+        conteinerMan.style.height=pageWidth*0.05*1.4 +"px"
     }
 
     //------------------
